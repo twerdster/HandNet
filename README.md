@@ -19,15 +19,8 @@ For example (assuming you downloaded the validation data to Validation folder):
 import scipy.io
 data = scipy.io.loadmat('Validation/Data_0000000.mat')
 ```
-## Derotation
-TODO ...
-
-## Cropping to bounding box and generating HDF5 files 
-TODO ...
-
-## Performing training 
-TODO ...
-
-## How to evaluate another method on test data
-TODO ...
-
+## TODO 
+Derotation
+Cropping to bounding box and generating HDF5 files 
+Performing training 
+How to evaluate another method on test data

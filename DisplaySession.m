@@ -46,7 +46,8 @@ load('Parameters.mat');
 
 % Get ordered data indices (the supplied data folders are already shuffled)
 load('Indices.mat');
-inds = eval(lower(dirName(1:end-4)));
+[~, dataName, ~] = fileparts(dirName); 
+inds = eval(lower(dataName(1:end-4)));
 
 % Setup ray directions for 3D visualization of point clouds
 [x,y] = meshgrid((1:320)-1,(1:240)-1);
