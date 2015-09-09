@@ -1,5 +1,9 @@
 function [alpha, pointId, upId, toCam] = derotate2(Rin)
-%Can consider this as being a clamp-to-nearest problem
+
+% alpha - Derotation angle. use this angle to perform in-plane derotation around the center of an image
+% pointId,upIdtoCam can be used as classifiers determining which axis is pointing upwards and towards the camera
+
+%Can consider this as being a clamp-to-nearest function
 %for each of the possible states of the right handed axis.
 
  % Find the axis with a z component 
