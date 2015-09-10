@@ -57,7 +57,7 @@ preDepth = ((inv(KK)*[x(:) y(:) y(:)*0+1]')');
 
 
 showOrdered = true; % Reorganize the data chronologically
-chooseSession = 0; % If we show the reorganized data then we also choose a session
+chooseSession = 0; % 0 - 9.  If we show the reorganized data then we also choose a session. 
 skipFrames = 1; % Skip through frames
 
 
@@ -139,6 +139,16 @@ for i=1:skipFrames:length(d)
        h=line([pos(1,:); rot(1,2:3:end)],[pos(2,:); rot(2,2:3:end)],[pos(3,:); rot(3,2:3:end)]);  arrayfun(@(h_)set(h_,'Color',[0 1 0],'LineSmoothing','on', 'LineWidth',3),h);
        h=line([pos(1,:); rot(1,3:3:end)],[pos(2,:); rot(2,3:3:end)],[pos(3,:); rot(3,3:3:end)]);  arrayfun(@(h_)set(h_,'Color',[0 0 1],'LineSmoothing','on', 'LineWidth',3),h);
        
+	   if 1 % Plot 3d Bounding box using our detected hand center. Can replace data.handPos for data.pos(:,6) to get the sensor location
+          cx = data.handPos(1);cy = data.handPos(2);cz = data.handPos(3);
+          sz = 250/2;
+          plot3(cx+[-1 +1  +1 -1 -1]*sz,cy+[+1 +1 -1 -1 +1]*sz,cz+[-1 -1 -1 -1 -1]*sz,'r');
+          plot3(cx+[-1 +1  +1 -1 -1]*sz,cy+[+1 +1 -1 -1 +1]*sz,cz+[+1 +1 +1 +1 +1]*sz,'r');
+          
+          plot3(cx+[-1 -1 -1 -1 -1]*sz,cy+[+1 +1 -1 -1 +1]*sz,cz+[-1 +1  +1 -1 -1]*sz,'r');
+          plot3(cx+[+1 +1 +1 +1 +1]*sz,cy+[+1 +1 -1 -1 +1]*sz,cz+[-1 +1  +1 -1 -1]*sz,'r');
+       end
+	   
        if ~exist('setview')
           view(25,10);
           setview = 1;
