@@ -47,12 +47,13 @@ data = scipy.io.loadmat('Validation/Data_0000000.mat')
 ```
 
 ## Citation
-Please cite this paper if you use HandNet in your work.
+Please cite this paper [LINK] (http://bmvc2015.swansea.ac.uk/proceedings/papers/paper033/index.html) if you use HandNet in your work.
 
-@article{wetzlerBMVC15,
+    @article{wetzlerBMVC15,
       Author = {Wetzler, Aaron and Slossberg, Ron and Kimmel, Ron},
       Journal = {British Machine Vision Conference},
       Title = {Rule of Thumb: Deep Derotation for Improved Fingertip Detection,},
       Year = {2015}
     }
-	[LINK] (http://bmvc2015.swansea.ac.uk/proceedings/papers/paper033/index.html)
+
+	
