@@ -27,8 +27,8 @@ in our BMVC'15 paper. They can be downloaded here:
 
 We dont recommend using the the non-perturbed version of the results but for the sake of completeness
 we provide our results here:
-* [Test_Perturbed_Results (167 MB)](https://www.dropbox.com/s/k469z2h92hli5iv/TestData_Results.mat?dl=0)
-* [Validation_Perturbed_Results (23 MB)](https://www.dropbox.com/s/6mw1tcrl80begbx/ValidationData_Results.mat?dl=0)
+* [Test_Results (167 MB)](https://www.dropbox.com/s/k469z2h92hli5iv/TestData_Results.mat?dl=0)
+* [Validation_Results (23 MB)](https://www.dropbox.com/s/6mw1tcrl80begbx/ValidationData_Results.mat?dl=0)
 
 
 
