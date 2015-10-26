@@ -6,8 +6,8 @@ Data needs to be downloaded from here (into respective folders):
 * [Train (12.5 GB) ](http://gip.cs.technion.ac.il/files/HandNet/TrainData.rar)
 * [Test (627 MB) ](http://gip.cs.technion.ac.il/files/HandNet/TestData.zip)
 * [Validation (174 MB)](http://gip.cs.technion.ac.il/files/HandNet/ValidationData.zip)
-* [Train_DerotGT (12.5 GB) ] Not yet available.
-* [Validation_DerotGT (174 MB)](http://gip.cs.technion.ac.il/files/HandNet/ValidationData_DerotGT.zip)
+* [Train_DerotGT (12.5 GB) ] Not currently available.
+* [Validation_DerotGT (174 MB)] Not currently available.
 * [Test_Perturbed (521 MB) ](https://www.dropbox.com/s/sgnczzvir9ba3l5/TestData_Perturbed.zip?dl=0)
 * [Validation_Perturbed (144 MB)](https://www.dropbox.com/s/zs8umpc6uubhjkj/ValidationData_Perturbed.zip?dl=0)
 
@@ -46,3 +46,13 @@ import scipy.io
 data = scipy.io.loadmat('Validation/Data_0000000.mat')
 ```
 
+## Citation
+Please cite this paper if you use HandNet in your work.
+
+@article{wetzlerBMVC15,
+      Author = {Wetzler, Aaron and Slossberg, Ron and Kimmel, Ron},
+      Journal = {British Machine Vision Conference},
+      Title = {Rule of Thumb: Deep Derotation for Improved Fingertip Detection,},
+      Year = {2015}
+    }
+	[LINK] (http://bmvc2015.swansea.ac.uk/proceedings/papers/paper033/index.html)
