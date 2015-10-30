@@ -44,7 +44,7 @@ for i=1:num
     sda = squeeze(sum(da.^2,2));
     gta = sda(:,:)<thr^2;
     
-    B=NP.Results.derotgt.(learner).(derotater2);
+    B=Results.derotgt.(learner).(derotater2);
     bp=[B.predicted_XYZ];
     bgt=[B.(which_GT)]; 
     bc = [B.conf];

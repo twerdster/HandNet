@@ -27,7 +27,7 @@ in our BMVC'15 paper. They can be downloaded here:
 We dont recommend using the the non-perturbed version of the results but for the sake of completeness
 we provide our results here:
 * [Test_Results (167 MB)](http://gip.cs.technion.ac.il/files/HandNet/TestData_Results.mat)
-* [Validation_Results (23 MB)](http://gip.cs.technion.ac.il/files/HandNet/ValidationData_Results.mat
+* [Validation_Results (23 MB)](http://gip.cs.technion.ac.il/files/HandNet/ValidationData_Results.mat)
 
 ## Explore the results
 Run the script ShowResults.m after downloading the results data. This script can also easily be used to benchmark your own
