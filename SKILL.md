@@ -29,6 +29,11 @@ Older toolbox APIs, hard-coded preprocessing paths, separate result files, and d
 Keep the local New! badge and exact “Updated and ported for modern hardware”
 link below the root README title, targeting `updated/README.md` and its matching
 heading. Put the brief modernization summary and further links there.
-Distinguish the separate website/Hugging Face viewers from the preserved MATLAB
-code; use the website's update guide for current viewer evidence. Preserve the
-reference body and original script bytes, attribution and code/data terms.
+Keep the update guide self-contained in this GitHub repository: briefly describe
+the changes first, then provide usage, scope, provenance and license details
+under the updated heading. Link existing website explorer documentation, source
+and assets with absolute public URLs; do not depend on a duplicated website
+update guide. Distinguish the website/Hugging Face viewers from the preserved
+MATLAB code. Preserve the reference body and original script bytes, attribution
+and code/data terms. This navigation request covers GitHub repositories only;
+website navigation changes require a separate user request.

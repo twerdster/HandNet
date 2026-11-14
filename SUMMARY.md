@@ -26,8 +26,12 @@ Older toolbox APIs, hard-coded preprocessing paths, separate result files, and d
 
 The root README adds a local New! badge and the exact
 “Updated and ported for modern hardware” link to `updated/README.md`.
-That guide points to the separately implemented website browser viewer
-(20 precomputed rows/eight pairs) and the separate 96-sample research Space.
-The historical MATLAB implementation, reference README body, original code
-terms and validation limits are unchanged. No MATLAB runtime, preprocessing,
-training or learned-inference claim follows from the browser visualization.
+That GitHub guide contains the modern-viewer summary, usage, sample scope,
+provenance and license links. It links the existing website explorer source and
+assets directly, without depending on a separate update guide on the website.
+The website viewer has 20 precomputed rows/eight pairs; the separate research
+Space has 96 samples. The historical MATLAB implementation, reference README
+body, original code terms and validation limits are unchanged. No MATLAB
+runtime, preprocessing, training or learned-inference claim follows from the
+browser visualization. The requested update navigation is scoped to GitHub
+repositories; website navigation changes require a separate user request.
