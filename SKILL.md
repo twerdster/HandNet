@@ -23,3 +23,12 @@ Keep archive directory names aligned with DisplaySession.dirName. Read source co
 Source inspection only; no current MATLAB/Octave run, training, dataset download or benchmark reproduction. No automated regression suite is included.
 
 Older toolbox APIs, hard-coded preprocessing paths, separate result files, and derotate.m declaring derotate2. Dataset CC BY 4.0 does not change the original code academic-use notice.
+
+## Modern viewer navigation
+
+Keep the local New! badge and exact “Updated and ported for modern hardware”
+link below the root README title, targeting `updated/README.md` and its matching
+heading. Put the brief modernization summary and further links there.
+Distinguish the separate website/Hugging Face viewers from the preserved MATLAB
+code; use the website's update guide for current viewer evidence. Preserve the
+reference body and original script bytes, attribution and code/data terms.

@@ -21,3 +21,13 @@ Source inspection only; no current MATLAB/Octave run, training, dataset download
 ## Limitations
 
 Older toolbox APIs, hard-coded preprocessing paths, separate result files, and derotate.m declaring derotate2. Dataset CC BY 4.0 does not change the original code academic-use notice.
+
+## Modern viewer navigation — 2026-11-14
+
+The root README adds a local New! badge and the exact
+“Updated and ported for modern hardware” link to `updated/README.md`.
+That guide points to the separately implemented website browser viewer
+(20 precomputed rows/eight pairs) and the separate 96-sample research Space.
+The historical MATLAB implementation, reference README body, original code
+terms and validation limits are unchanged. No MATLAB runtime, preprocessing,
+training or learned-inference claim follows from the browser visualization.
