@@ -13,9 +13,9 @@ On373 comparable samples where the original tracker was freshly matched,95th-per
 ## Complete native Tea forests
 
 The submodule is deliberately pinned to
-[`de06719`](https://github.com/twerdster/depthtrack/commit/de06719f1be7e44b6dffb3ea612edfba01050e0f).
-Its [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/de06719f1be7e44b6dffb3ea612edfba01050e0f/docs/tea-forest.md)
-and [C++ API](https://github.com/twerdster/depthtrack/blob/de06719f1be7e44b6dffb3ea612edfba01050e0f/include/depthtrack/tea_forest.hpp)
+[`6bbbe74`](https://github.com/twerdster/depthtrack/commit/6bbbe74711b4f3dc77699291c84876fff405db52).
+Its [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/docs/tea-forest.md)
+and [C++ API](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/include/depthtrack/tea_forest.hpp)
 cover complete 20-decision trees and three-tree forests with their exact
 `Coords.co` banks. Each leaf posterior is normalized before the weighted tree
 mean. The optional calibrated observation stage and existing tracker consume
@@ -32,8 +32,17 @@ CLI outputs and label/coordinate/aggregation rules.
 Mac and Linux CPU execution passed all six native tests, including independent
 portable-fixture comparisons and all 20 decisions of a three-tree forest. These
 are synthetic correctness checks; they establish no HandNet accuracy result.
-The [completed feature-branch CI run](https://github.com/twerdster/depthtrack/actions/runs/43717830988)
+The [completed feature-branch CI run](https://github.com/twerdster/depthtrack/actions/runs/43719231425)
 passed for this exact commit.
+The new [native/Python HandNet parity harness](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/tools/validate_tea_handnet.py)
+compares identical depth frames through inference, calibrated observations and
+complete temporal tracker state/history. Its
+[recorded harness check](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/docs/tea-handnet-harness-validation.json)
+passed on three real training frames using an **untrained synthetic fixture
+forest** and **synthetic 0.1 s timestamps**. This verifies integration agreement;
+it is not a trained-model result, recognition score or measured temporal accuracy.
+A selected trained model still requires its own separately recorded parity check.
+
 The deep Tea backend has not been ported to Metal, mobile inference or FPGA.
 The older packed seven-class ten-decision hardware examples remain separate.
 

@@ -17,8 +17,8 @@ not ready. Do not substitute synthetic backend agreement or training self-succes
 for those results.
 
 [Tea tooling CI](https://github.com/twerdster/tea/actions/runs/43717599628) passed
-for `27ae728`; [DepthTrack CI](https://github.com/twerdster/depthtrack/actions/runs/43717830988)
-passed for its pinned `de06719` backend. These completed source checks do not
+for `27ae728`; [DepthTrack CI](https://github.com/twerdster/depthtrack/actions/runs/43719231425)
+passed for its pinned `6bbbe74` backend. These completed source checks do not
 mean that the GPU training campaign has run or that models are accurate.
 
 The training workflow preserves source archives and existing GPU jobs. Resource
@@ -54,12 +54,20 @@ trainer repairs; it is not evidence that the new forest is accurate.
 
 ## Inference integration
 
-The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/de06719f1be7e44b6dffb3ea612edfba01050e0f/docs/tea-forest.md)
+The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/docs/tea-forest.md)
 provides the C++17 loader/CPU CLI/API for complete 20-decision, three-tree forests,
 calibrated fingertip observations and timestamp-aware temporal tracking. It
 checks the native model layout and exact coordinate banks, normalizes each leaf
 posterior, and combines tree probabilities. Synthetic tests verify numerical
 and deep-path correctness; recognition quality needs the staged evaluations above.
+
+The pinned [parity and tracking harness](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/tools/validate_tea_handnet.py)
+can compare selected deployment artifacts against the matching Tea Python
+reference on identical train/validation frames. The published harness check used
+three real training frames, an **untrained synthetic fixture forest** and
+**synthetic 0.1 s timestamps**. It passed implementation agreement checks only;
+actual trained-model parity, held-out recognition and temporal accuracy remain
+separate work after selected artifacts exist.
 
 The HandNet label modes are explicit:
 

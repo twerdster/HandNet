@@ -49,8 +49,8 @@ The demo uses130 HandMeshRecord depth frames and recovered ZScanV02 model detect
 The isolated `tea-handnet-forest` worktree starts from the clean historical
 `master` commit `0a72574`; the original checkout remains unchanged.
 `external/depthtrack` remains a true mode 160000 Git submodule, deliberately
-advanced from `c9913d3f03089bb2f8568e2880c2f3d4d7bf40f9` to reviewed public commit
-`de06719f1be7e44b6dffb3ea612edfba01050e0f`. `.gitmodules` tracks its public
+initially advanced from `c9913d3f03089bb2f8568e2880c2f3d4d7bf40f9` to reviewed public
+commit `de06719f1be7e44b6dffb3ea612edfba01050e0f`; the current pin is recorded below. `.gitmodules` tracks its public
 `tea-handnet-forest` branch. Ordinary recursive submodule checkout uses the exact
 recorded gitlink, not a copied implementation or build tree.
 
@@ -82,9 +82,33 @@ integration. All 10 tracked MATLAB/MAT source, data/calibration and index files
 match the original checkout byte-for-byte. No MATLAB runtime, source archive,
 calibration, website navigation or historical output asset was changed.
 
-Completed source CI was independently verified publicly: DepthTrack run
+Initial source CI was independently verified publicly: DepthTrack run
 [43717830988](https://github.com/twerdster/depthtrack/actions/runs/43717830988)
 reports Success at `de06719`; Tea tooling run
 [43717599628](https://github.com/twerdster/tea/actions/runs/43717599628)
 reports Success at `27ae728`. CI implementation/tooling checks are separate from
 the resource-waiting GPU campaign and held-out scientific evaluation.
+
+## HandNet parity harness pin — 2026-11-15
+
+The current `external/depthtrack` gitlink is reviewed public commit
+`6bbbe74711b4f3dc77699291c84876fff405db52` on `tea-handnet-forest`, advanced from
+`de06719`. Native inference behavior is unchanged; upstream adds
+`tools/validate_tea_handnet.py`, evidence/documentation and sanitized machine paths.
+Pinned guide/tool links now use this commit. The completed current CI run
+[43719231425](https://github.com/twerdster/depthtrack/actions/runs/43719231425)
+reports Success for Mac/Linux/Android checks; Pages was skipped, so no new website
+deployment is claimed. Earlier CI links remain historical evidence.
+
+The recorded harness check processed three real HandNet training frames with an
+explicitly untrained synthetic fixture forest and synthetic 0.1 s timestamps.
+Native/Python queried masks, labels, heaps and probabilities agreed, with calibrated
+observation/tracker/history agreement within the recorded tolerances. This is
+harness validation only: it is not an actual trained-model parity result, held-out
+recognition score or measured temporal accuracy. The GPU campaign is still
+waiting; new trained models/results remain unavailable.
+
+Integration validation rechecks remote reachability, normal recursive checkout,
+relative guide links and all 10 original MATLAB/MAT file hashes. Native builds/tests
+are not repeated because this pin changes tools/docs/evidence only; the previous
+fresh CLI fixture check and upstream native validation retain their stated scope.

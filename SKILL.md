@@ -80,3 +80,17 @@ training and scientific evaluation. Preserve all historical attribution and term
 Link exact completed source CI runs when reporting implementation validation.
 A passing Tea tooling/DepthTrack CI run does not mean GPU training completed or
 that a new model has validated recognition accuracy.
+
+## HandNet parity harness evidence
+
+Keep current backend/tool/CI links aligned with the exact reviewed submodule pin.
+The `validate_tea_handnet.py` tool compares supplied deployment artifacts and the
+matching Python reference on identical train/validation frames; it is separate
+from training, model selection and final-test evaluation. Declare model and data
+roles and timestamp provenance. The current recorded three-frame check uses an
+untrained synthetic forest and synthetic 0.1 s timestamps on real training frames;
+do not report it as an actual trained-model result or temporal/recognition accuracy.
+Record a separate check after selected trained artifacts exist. A skipped Pages
+job is not a website deployment. Tool/docs-only pin changes need reachability,
+recursive checkout and protected-byte checks; repeat native builds/tests only
+when source behavior changes or another unresolved concern justifies them.

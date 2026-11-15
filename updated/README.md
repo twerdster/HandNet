@@ -14,7 +14,9 @@ scripts, train a model or run learned fingertip inference.
 
 The pinned [DepthTrack integration](depthtrack.md) now includes a native C++17
 Tea forest loader and API for complete 20-decision, three-tree CPU inference,
-calibrated fingertip observations and timestamp-aware tracking. Seven-class
+calibrated fingertip observations and timestamp-aware tracking. Its
+[HandNet parity harness](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/tools/validate_tea_handnet.py)
+checks the native/Python integration separately from recognition evaluation. Seven-class
 hand-only and optional eight-class learned-background models have explicit,
 separate label contracts. This deep Tea path is separate from the historical
 packed ten-decision CPU/Metal/FPGA example and from the browser viewer.
