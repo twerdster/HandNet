@@ -2,7 +2,7 @@
 
 [![New!](updated/assets/new-badge.svg)](updated/README.md#updated-and-ported-for-modern-hardware) **[Updated and ported for modern hardware](updated/README.md#updated-and-ported-for-modern-hardware)**
 
-[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, recorded outputs, phone demo, and Mac/Linux/iOS/Android/FPGA run guides.
+[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, recorded outputs, phone replay, experimental live monocular camera depth, and Mac/Linux/iOS/Android/FPGA run guides.
 
 [![MATLAB](https://img.shields.io/badge/code-MATLAB-0076A8)](DisplaySession.m)
 [![Dataset on Hugging Face](https://img.shields.io/badge/dataset-Hugging%20Face-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/twerdster/HandNet)

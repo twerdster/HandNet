@@ -2,7 +2,7 @@
 
 [DepthTrack](https://github.com/twerdster/depthtrack) is included as the pinned Git submodule [`external/depthtrack`](../external/depthtrack). It packages recovered depth-tree inference, a new timestamp-aware3D tracker, recorded outputs, a browser replay, and native integration examples.
 
-**[Open the phone-friendly demo](https://twerdster.github.io/depthtrack/)** · [Base repository and all platform commands](https://github.com/twerdster/depthtrack#run-on-each-platform) · [Recorded outputs and limits](https://github.com/twerdster/depthtrack/blob/main/docs/results.md)
+**[Open recorded tracking](https://twerdster.github.io/depthtrack/)** · **[Try live monocular camera depth](https://twerdster.github.io/depthtrack/live/)** · [Base repository and all platform commands](https://github.com/twerdster/depthtrack#run-on-each-platform) · [Recorded outputs and limits](https://github.com/twerdster/depthtrack/blob/main/docs/results.md)
 
 ![Recorded depth-image tracking on Mac CPU](https://raw.githubusercontent.com/twerdster/depthtrack/b3b17e6219a93f0d915cb67565e710ee8278eda3/docs/media/improved_tracking_phone.gif)
 
@@ -35,6 +35,14 @@ python3 -m http.server 8000 --directory web
 ```
 
 Open `http://localhost:8000`, or use the hosted HTTPS demo on a phone. Play/pause, scrub real timestamps and compare original/improved states. JavaScript computes the causal tracker from saved detections; it does not run a HandNet neural network or capture a camera. No account, Tailscale or full archive download is required for the bundled sample.
+
+## Live webcam / phone-camera experiment
+
+The pinned submodule also includes a separate [live monocular-depth page](https://twerdster.github.io/depthtrack/live/): camera RGB → Depth Anything V2 Small at294² → approximate two-anchor depth scale → range/centre masks → the exact128² ten-split seven-class tree → candidate-region tracking. Processing happens locally in the browser; frames are not uploaded. Load the model, start the camera, then capture two measured near/far anchors before enabling the tree. The recorded replay above remains independent of the neural runtime.
+
+The model gives relative depth, so a distance cutoff is approximate after calibration. Low-resolution monocular depth can lose finger geometry; the old tree's anatomical accuracy on this input is unverified. The compact tree has no nonzero-depth background class, and largest-class components are experimental observations, not the restored full detector's fingertip modes. This is browser execution, not FPGA execution or HandNet training.
+
+Actual Mac browser model inference and synthetic-camera start/stop/restart tests passed;75 numerical/lifecycle/app browser tests pass locally. No physical phone runtime or useful live webcam hand scene is claimed. [Setup, measurements and limits](https://github.com/twerdster/depthtrack/blob/de334f7e2a89bcb607c8142cb00756136b46b91b/docs/monocular-live.md).
 
 ## Platforms and scope
 
