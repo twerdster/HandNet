@@ -22,10 +22,15 @@ separate label contracts. This deep Tea path is separate from the historical
 packed ten-decision CPU/Metal/FPGA example and from the browser viewer.
 
 The [HandNet forest workflow](tea-training.md) links the repaired Tea trainer,
-reproducible class-aware conversion and held-out evaluation. Its bounded campaign
-is active but waiting for GPU resources; no new trained HandNet models or accuracy
-results are ready. Native synthetic parity tests establish implementation
-behavior, not recognition performance.
+reproducible class-aware conversion and held-out evaluation. As of **2026-11-15
+16:35 UTC**, all eight pilots and 48 validation configurations are complete on a
+frozen 300-frame validation set. Probe scale 25000 with learned background was
+selected for full-tree training preparation, and the first tree's feature
+conversion is underway. Final ensemble/test results are pending. The winning
+pilot's depth/confidence setting is not yet a final deployment choice; those
+settings will be selected after all three full trees are available.
+The [Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
+provides the frozen validation protocol, comparison settings and metric limits.
 
 ### Open and use
 

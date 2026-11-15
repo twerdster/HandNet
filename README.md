@@ -2,7 +2,7 @@
 
 [![New!](updated/assets/new-badge.svg)](updated/README.md#updated-and-ported-for-modern-hardware) **[Updated and ported for modern hardware](updated/README.md#updated-and-ported-for-modern-hardware)**
 
-[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, complete native Tea forest CPU/API support, recorded tracking outputs and platform guides. [HandNet forest training and evaluation](updated/tea-training.md) is a separate staged workflow; new trained models and results are not yet available.
+[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, complete native Tea forest CPU/API support, recorded tracking outputs and platform guides. [HandNet forest training and evaluation](updated/tea-training.md) is a separate staged workflow: pilot validation is complete and full-tree feature conversion is underway; final ensemble/test results are pending.
 
 [![MATLAB](https://img.shields.io/badge/code-MATLAB-0076A8)](DisplaySession.m)
 [![Dataset on Hugging Face](https://img.shields.io/badge/dataset-Hugging%20Face-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/twerdster/HandNet)

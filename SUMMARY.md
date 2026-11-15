@@ -65,10 +65,12 @@ FPGA examples retain their prior scope.
 
 Training source is Tea branch `handnet-forest-training`, reviewed commit
 `27ae728`, with repaired native training, class-aware conversion, manifests and
-held-out evaluation. The separate campaign is active but waiting for GPU
-resources. Its initial scope is at most eight pilots and three final trees,
-sequentially under the existing queue, authorized budget and recurring monitor.
-No new trained HandNet model, chosen configuration or held-out result is ready.
+held-out evaluation. As of 2026-11-15 16:35 UTC, all eight pilots and 48 validation
+configurations are complete on frozen 300 validation frames. Learned background
+and probe 25000 were selected for full-tree training preparation; conversion for
+tree 0 began at 16:27:33 UTC. Three final trees remain under the existing sequential
+queue, authorized budget and recurring monitor. No complete full-tree model or
+final ensemble/test metrics are ready; final depth/threshold selection is pending.
 The historical HandMeshRecord animation still uses ZScanV02 detections; it is not
 a new forest result. Official frame splits alone do not prove subject independence.
 
@@ -87,7 +89,7 @@ Initial source CI was independently verified publicly: DepthTrack run
 reports Success at `de06719`; Tea tooling run
 [43717599628](https://github.com/twerdster/tea/actions/runs/43717599628)
 reports Success at `27ae728`. CI implementation/tooling checks are separate from
-the resource-waiting GPU campaign and held-out scientific evaluation.
+the separately monitored GPU campaign and held-out scientific evaluation.
 
 ## HandNet parity harness pin — 2026-11-15
 
@@ -105,10 +107,35 @@ explicitly untrained synthetic fixture forest and synthetic 0.1 s timestamps.
 Native/Python queried masks, labels, heaps and probabilities agreed, with calibrated
 observation/tracker/history agreement within the recorded tolerances. This is
 harness validation only: it is not an actual trained-model parity result, held-out
-recognition score or measured temporal accuracy. The GPU campaign is still
-waiting; new trained models/results remain unavailable.
+recognition score or measured temporal accuracy. It remains separate from the
+completed pilot validation and the pending full-tree campaign described below.
 
 Integration validation rechecks remote reachability, normal recursive checkout,
 relative guide links and all 10 original MATLAB/MAT file hashes. Native builds/tests
 are not repeated because this pin changes tools/docs/evidence only; the previous
 fresh CLI fixture check and upstream native validation retain their stated scope.
+
+## Pilot completion and full-tree preparation — 2026-11-15 16:35 UTC
+
+All eight pilots and 48 configurations have completed validation on the same
+frozen 300 validation frames. The best learned-background eight-class pilot uses
+probe 25000, 20 decisions and threshold 0.5; validation F1@15mm is
+0.23650137167567786. The best seven-class pilot at scale 25000 reports 0.2273385.
+These are pilot selection F1 scores, not classification-accuracy percentages,
+final ensemble/test metrics, paper reproduction or participant-independent proof.
+
+Learned background and scale 25000 are selected for full-tree training preparation.
+Tree 0 feature conversion started 2026-11-15 16:27:33 UTC and is underway at this
+snapshot; no complete full-tree model exists yet. Final deployment depth and
+probability threshold will be selected from validation after all three full trees
+are available. Keep the existing queue, budget and two-hour monitor through this
+stage and final evaluation. Do not describe the pilot's 20/.5 setting as a frozen
+final deployment configuration.
+
+The HandNet guides now report this dated stage and link the
+[Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
+for the experiment, metric definition, foreground policies and recorded pilot
+native/Python parity. Public report availability was verified at Tea commit
+`651a95d` before this HandNet update. Preserve
+the current DepthTrack gitlink 6bbbe74711b4f3dc77699291c84876fff405db52 and all
+historical source/data/calibration bytes. This change is documentation-only.

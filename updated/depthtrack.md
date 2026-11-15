@@ -47,9 +47,12 @@ The deep Tea backend has not been ported to Metal, mobile inference or FPGA.
 The older packed seven-class ten-decision hardware examples remain separate.
 
 [HandNet forest training and held-out evaluation](tea-training.md) uses the
-repaired Tea source as a separate stage. That bounded campaign is waiting for
-GPU resources. The recorded HandMeshRecord animation above still uses the
-historical ZScanV02 detector; it is not output from a newly trained HandNet forest.
+repaired Tea source as a separate stage. As of **2026-11-15 16:35 UTC**, its eight
+pilots and 48 validation configurations are complete; scale 25000 with learned
+background was chosen for full-tree training preparation. Feature conversion for
+the first full tree is underway; no complete full-tree ensemble or final-test
+metrics are available. The recorded HandMeshRecord animation above still uses
+the historical ZScanV02 detector, not the new pilot or pending full-tree models.
 
 ## Get the code and run
 
@@ -96,6 +99,6 @@ The [base README](https://github.com/twerdster/depthtrack#run-on-each-platform) 
 
 ## Relationship to HandNet
 
-The recovered ZScanV02 classifier's training dataset and its relationship to **HandNet are unverified**. This integration did not retrain its historical detector or generate a new HandNet model; training/test independence of the recording is unknown. A separate [bounded HandNet campaign](tea-training.md) is staged and waiting for GPU resources; no new trained model or held-out result is available. This integration makes related reusable code and evidence accessible; it does not reproduce the HandNet neural network, paper metric or held-out evaluation.
+The recovered ZScanV02 classifier's training dataset and its relationship to **HandNet are unverified**. The recorded demo did not retrain its historical detector, and training/test independence of the recording is unknown. The separate [bounded HandNet campaign](tea-training.md) has completed pilot training/validation and begun full-tree feature conversion as of 2026-11-15 16:35 UTC. Pilot selection scores are distinct from pending full-ensemble and final-test metrics. This integration makes related reusable code and evidence accessible; it does not reproduce the HandNet neural network, paper metric or held-out evaluation.
 
 HandNet's historical MATLAB scripts, calibration/indices files, citation, academic-use code notice and dataset licensing remain unchanged. DepthTrack has its own [component notices](https://github.com/twerdster/depthtrack/blob/main/NOTICE.md); HandNet's dataset license is not assigned to unrelated recovered recordings or historical/vendor code.

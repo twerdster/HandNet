@@ -63,10 +63,13 @@ monotonic timestamps are explicit contracts. Keep historical packed ten-decision
 CPU/Metal/FPGA and mobile-tracker evidence separate from deep Tea CPU execution.
 
 Keep training status separate from implementation parity and the older recorded
-tracking demo. The current bounded campaign is waiting for GPU resources; do not
-claim newly trained models or held-out accuracy until artifacts and actual
-predictions are verified. At most eight pilots and three final trees are in the
-initial campaign, under its existing queue, budget and recurring monitor. A
+tracking demo. Keep status dated: as of 2026-11-15 16:35 UTC, eight pilots/48
+validation configurations are complete and first-full-tree conversion is underway.
+Report validation F1 explicitly as a pilot selection score, not an accuracy
+percentage or final ensemble/test metric. Learned background and scale 25000 were
+selected for full-tree preparation; final deployment depth/threshold remain to be
+selected after all three full trees. Keep those trees under the existing queue,
+budget and recurring monitor; do not claim complete full models before verification. A
 HandNet documentation/submodule integration does not independently launch work,
 change that budget or control unrelated jobs. Select configuration on validation
 and reserve test data for final metrics; randomized frame splits do not prove
@@ -94,3 +97,19 @@ Record a separate check after selected trained artifacts exist. A skipped Pages
 job is not a website deployment. Tool/docs-only pin changes need reachability,
 recursive checkout and protected-byte checks; repeat native builds/tests only
 when source behavior changes or another unresolved concern justifies them.
+
+## Publishing pilot status
+
+Replace obsolete waiting/no-results statements with a dated stage and verified
+pilot scope. Preserve the frozen 300-validation-frame denominator and distinguish
+eight trained pilots/48 validation configurations from three pending full trees.
+Keep official randomized frame splits distinct from subject-independent evidence,
+and final test metrics distinct from validation selection. The
+[Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
+is the detailed comparison/metric reference. Report links may be prepared during
+review; verify public Tea publication before committing or publishing the HandNet
+update. Distinguish the original untrained-fixture harness record from the
+selected pilot's separately recorded native/Python parity and pending full-model
+checks.
+This documentation maintenance does not change the gitlink, historical MATLAB/
+calibration/data bytes, training budget or active processes.
