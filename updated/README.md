@@ -12,6 +12,13 @@ scripts, train a model or run learned fingertip inference.
 
 ### Open and use
 
+For executable depth-tree inference and temporal fingertip tracking, see the new
+[DepthTrack integration](depthtrack.md). Its pinned [`external/depthtrack`](../external/depthtrack)
+submodule contains code, the recorded tracking outputs, a phone-friendly replay,
+and run/build guides for Mac, Linux, iOS, Android and Mojo FPGA. This is a separate
+related implementation: the recovered detector's HandNet training provenance is
+unverified, and its demo does not reproduce the HandNet neural network or paper evaluation.
+
 Open the [HandNet page](https://twerdster.github.io/HandNet/#explorer) for the
 embedded viewer, or the [standalone viewer](https://twerdster.github.io/HandNet/explorer/).
 Select an example, rotate the point cloud, inspect image and heatmap channels,

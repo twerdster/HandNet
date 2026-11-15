@@ -20,7 +20,7 @@ Keep archive directory names aligned with DisplaySession.dirName. Read source co
 
 ## Current evidence boundary
 
-Source inspection only; no current MATLAB/Octave run, training, dataset download or benchmark reproduction. No automated regression suite is included.
+For historical MATLAB: source inspection only; no current MATLAB/Octave run, training, dataset download or benchmark reproduction. No automated regression suite for those scripts is included. The related DepthTrack submodule has separate executed native/browser/backend checks.
 
 Older toolbox APIs, hard-coded preprocessing paths, separate result files, and derotate.m declaring derotate2. Dataset CC BY 4.0 does not change the original code academic-use notice.
 
@@ -37,3 +37,11 @@ update guide. Distinguish the website/Hugging Face viewers from the preserved
 MATLAB code. Preserve the reference body and original script bytes, attribution
 and code/data terms. This navigation request covers GitHub repositories only;
 website navigation changes require a separate user request.
+
+## DepthTrack integration
+
+Keep`external/depthtrack`as a true Git submodule pinned to a reviewed upstream commit. Update the gitlink deliberately after validating the new commit; use`git submodule update --init --recursive`for ordinary checkout. Do not copy build trees or duplicate the full standalone code into this parent.
+
+`updated/depthtrack.md`is the parent overview and output/platform entrypoint. Preserve pinned output image URLs when exact provenance matters; link the standalone repo for detailed commands, evidence and component notices. The130-frame HandMeshRecord demo and recovered ZScanV02 models have unverified HandNet training/split provenance. Distinguish detector-relative residuals from anatomical accuracy, cross-builds from device runtime, browser tracker execution from learned inference, and FPGA tree classification from host temporal tracking.
+
+Before every commit, review/update this SKILL and SUMMARY for behavior, workflows, outputs and handoff context. Validate the submodule commit is reachable remotely, relative links resolve and recursive checkout works; verify original MATLAB/calibration/indices bytes remain unchanged. Native mobile examples are integration fragments, not complete camera apps. No website-navigation changes or training are required by this integration.

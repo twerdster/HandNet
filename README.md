@@ -2,6 +2,8 @@
 
 [![New!](updated/assets/new-badge.svg)](updated/README.md#updated-and-ported-for-modern-hardware) **[Updated and ported for modern hardware](updated/README.md#updated-and-ported-for-modern-hardware)**
 
+[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, recorded outputs, phone demo, and Mac/Linux/iOS/Android/FPGA run guides.
+
 [![MATLAB](https://img.shields.io/badge/code-MATLAB-0076A8)](DisplaySession.m)
 [![Dataset on Hugging Face](https://img.shields.io/badge/dataset-Hugging%20Face-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/twerdster/HandNet)
 [![Data license: CC BY 4.0](https://img.shields.io/badge/data%20license-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
@@ -85,7 +87,9 @@ Review date: 2026-11-12.
 
 This revision reviewed the visualization, rotation, HDF5 and result-inspection scripts. It did
 not execute MATLAB or Octave, download the full dataset, train a model or reproduce paper results.
-There is no automated regression suite or current runtime validation record in this code repository.
+The historical MATLAB scripts have no automated regression suite or current runtime validation record.
+The related [DepthTrack submodule](updated/depthtrack.md) provides its own native/browser/backend tests
+and recorded evidence; those checks do not validate the preserved MATLAB preprocessing or paper results.
 The original scripts and their historical terms are unchanged.
 
 The preprocessing scripts use older MATLAB APIs and local paths. `derotate.m` declares its primary

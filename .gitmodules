@@ -1,0 +1,4 @@
+[submodule "external/depthtrack"]
+	path = external/depthtrack
+	url = https://github.com/twerdster/depthtrack.git
+	branch = main

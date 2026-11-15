@@ -16,7 +16,7 @@ The README explains the dataset tools, setup, metrics and limits. The image is t
 
 ## Validation scope
 
-Source inspection only; no current MATLAB/Octave run, training, dataset download or benchmark reproduction. No automated regression suite is included.
+Historical MATLAB: source inspection only; no current MATLAB/Octave run, training, dataset download or benchmark reproduction. No automated regression suite for those scripts is included. The separate DepthTrack submodule has its own executed tests and recorded validation, described below.
 
 ## Limitations
 
@@ -35,3 +35,11 @@ body, original code terms and validation limits are unchanged. No MATLAB
 runtime, preprocessing, training or learned-inference claim follows from the
 browser visualization. The requested update navigation is scoped to GitHub
 repositories; website navigation changes require a separate user request.
+
+## DepthTrack submodule and tracking outputs —2026-11-15
+
+Added`external/depthtrack`as a pinned public Git submodule from`twerdster/depthtrack`, with`.gitmodules`and clone/update instructions. Root README and updated/README.md link`updated/depthtrack.md`, which embeds the recorded output and links the base repo's exact Mac/Linux/iOS/Android/FPGA commands, result evidence and component notices.
+
+DepthTrack contains portable C++17/C ABI, NumPy and JavaScript tracking, CPU/Metal/Mojo tree inference, a static mobile-friendly replay,650-state fixtures, lossless sample depth and archived output evidence. Mac/Linux native tracking and CPU checks execute; Metal executes onMac; iOS device/simulator libraries cross-compile; Android JNIarm64 cross-build passed in CI, with device/app runtime explicitly unverified. The FPGA performs the seven-class ten-split per-pixel classifier, with temporal tracking on the host; it does not contain the full hand detector/tracker.
+
+The demo uses130 HandMeshRecord depth frames and recovered ZScanV02 model detections. Training dataset/HandNet relationship and train/test independence are unverified. No new HandNet network training or paper accuracy is claimed. Detector-relative tracking residuals improve, with original and improved states preserved on identical inputs. Historical MATLAB/calibration/indices bytes, original attribution, data/code terms and existing website remain unchanged.
