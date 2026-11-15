@@ -10,6 +10,21 @@ provides a larger 96-sample research viewer. This repository retains its
 historical MATLAB scripts: the viewer does not execute their preprocessing
 scripts, train a model or run learned fingertip inference.
 
+### Native forests and staged HandNet training
+
+The pinned [DepthTrack integration](depthtrack.md) now includes a native C++17
+Tea forest loader and API for complete 20-decision, three-tree CPU inference,
+calibrated fingertip observations and timestamp-aware tracking. Seven-class
+hand-only and optional eight-class learned-background models have explicit,
+separate label contracts. This deep Tea path is separate from the historical
+packed ten-decision CPU/Metal/FPGA example and from the browser viewer.
+
+The [HandNet forest workflow](tea-training.md) links the repaired Tea trainer,
+reproducible class-aware conversion and held-out evaluation. Its bounded campaign
+is active but waiting for GPU resources; no new trained HandNet models or accuracy
+results are ready. Native synthetic parity tests establish implementation
+behavior, not recognition performance.
+
 ### Open and use
 
 For executable depth-tree inference and temporal fingertip tracking, see the new

@@ -45,3 +45,38 @@ Keep`external/depthtrack`as a true Git submodule pinned to a reviewed upstream c
 `updated/depthtrack.md`is the parent overview and output/platform entrypoint. Preserve pinned output image URLs when exact provenance matters; link the standalone repo for detailed commands, evidence and component notices. The130-frame HandMeshRecord demo and recovered ZScanV02 models have unverified HandNet training/split provenance. Distinguish detector-relative residuals from anatomical accuracy, cross-builds from device runtime, browser tracker execution from learned inference, and FPGA tree classification from host temporal tracking.
 
 Before every commit, review/update this SKILL and SUMMARY for behavior, workflows, outputs and handoff context. Validate the submodule commit is reachable remotely, relative links resolve and recursive checkout works; verify original MATLAB/calibration/indices bytes remain unchanged. Native mobile examples are integration fragments, not complete camera apps. No website-navigation changes or training are required by this integration.
+
+## Native Tea forests and staged training
+
+Keep `external/depthtrack` pinned to a reviewed, remotely reachable commit; its
+current source branch is `tea-handnet-forest`. The gitlink must remain mode 160000.
+`updated/tea-training.md` connects the inference API to Tea's separate repaired
+`handnet-forest-training` source. Record exact reviewed commits and verify ordinary
+recursive checkout after pin changes. Preserve the original HandNet worktree.
+
+Use the native Tea backend guide for complete 20-decision, three-tree CPU/API
+claims. Header/Tea CLI 19 means 20 decisions. Seven hand classes have no learned
+background; optional modeled class 7 in an eight-class forest is distinct from
+invalid-centre 8 and reserved unknown 255. Coordinate banks, float32 complete-sum
+features, posterior normalization, centre-mask policy, calibration and real
+monotonic timestamps are explicit contracts. Keep historical packed ten-decision
+CPU/Metal/FPGA and mobile-tracker evidence separate from deep Tea CPU execution.
+
+Keep training status separate from implementation parity and the older recorded
+tracking demo. The current bounded campaign is waiting for GPU resources; do not
+claim newly trained models or held-out accuracy until artifacts and actual
+predictions are verified. At most eight pilots and three final trees are in the
+initial campaign, under its existing queue, budget and recurring monitor. A
+HandNet documentation/submodule integration does not independently launch work,
+change that budget or control unrelated jobs. Select configuration on validation
+and reserve test data for final metrics; randomized frame splits do not prove
+participant-independent generalization.
+
+Before a commit, synchronize this SKILL and SUMMARY, verify every historical
+MATLAB/MAT source/data/calibration/index byte remains unchanged, check guide links
+and the exact submodule pin, and report synthetic/native checks separately from
+training and scientific evaluation. Preserve all historical attribution and terms.
+
+Link exact completed source CI runs when reporting implementation validation.
+A passing Tea tooling/DepthTrack CI run does not mean GPU training completed or
+that a new model has validated recognition accuracy.

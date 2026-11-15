@@ -1,6 +1,6 @@
 # DepthTrack: depth inference and temporal tracking
 
-[DepthTrack](https://github.com/twerdster/depthtrack) is included as the pinned Git submodule [`external/depthtrack`](../external/depthtrack). It packages recovered depth-tree inference, a new timestamp-aware3D tracker, recorded outputs, a browser replay, and native integration examples.
+[DepthTrack](https://github.com/twerdster/depthtrack) is included as the pinned Git submodule [`external/depthtrack`](../external/depthtrack). It packages recovered depth-tree inference, native Tea forest CPU inference, a timestamp-aware 3D tracker, recorded outputs, a browser replay and native integration examples.
 
 **[Open the phone-friendly demo](https://twerdster.github.io/depthtrack/)** · [Base repository and all platform commands](https://github.com/twerdster/depthtrack#run-on-each-platform) · [Recorded outputs and limits](https://github.com/twerdster/depthtrack/blob/main/docs/results.md)
 
@@ -10,10 +10,42 @@ The130-frame,17.6s depth recording is **HandMeshRecord**. Its fingertip observat
 
 On373 comparable samples where the original tracker was freshly matched,95th-percentile separation from the current detections drops28.94→11.86mm. These are detector-relative measurements, not anatomical ground-truth accuracy. Detector mistakes and ambiguous modes remain possible. See the linked result record for all metrics, one retained held jump, synthetic checks and raw expected states.
 
+## Complete native Tea forests
+
+The submodule is deliberately pinned to
+[`de06719`](https://github.com/twerdster/depthtrack/commit/de06719f1be7e44b6dffb3ea612edfba01050e0f).
+Its [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/de06719f1be7e44b6dffb3ea612edfba01050e0f/docs/tea-forest.md)
+and [C++ API](https://github.com/twerdster/depthtrack/blob/de06719f1be7e44b6dffb3ea612edfba01050e0f/include/depthtrack/tea_forest.hpp)
+cover complete 20-decision trees and three-tree forests with their exact
+`Coords.co` banks. Each leaf posterior is normalized before the weighted tree
+mean. The optional calibrated observation stage and existing tracker consume
+these predictions with explicit missing measurements and real timestamps.
+
+Seven-class models contain only hand classes and require an explicit foreground
+policy. An optional eight-class model learns valid-depth background as class 7;
+invalid centres remain outside modeled classes (for example label 8), and
+unknown/no-vote 255 remains distinct. Caller masks restrict queried centres only;
+feature neighbours read unmodified raw depth. Calibration and class mapping are
+explicit manifest data. See the guide for the independent depth-only ROI, API,
+CLI outputs and label/coordinate/aggregation rules.
+
+Mac and Linux CPU execution passed all six native tests, including independent
+portable-fixture comparisons and all 20 decisions of a three-tree forest. These
+are synthetic correctness checks; they establish no HandNet accuracy result.
+The [completed feature-branch CI run](https://github.com/twerdster/depthtrack/actions/runs/43717830988)
+passed for this exact commit.
+The deep Tea backend has not been ported to Metal, mobile inference or FPGA.
+The older packed seven-class ten-decision hardware examples remain separate.
+
+[HandNet forest training and held-out evaluation](tea-training.md) uses the
+repaired Tea source as a separate stage. That bounded campaign is waiting for
+GPU resources. The recorded HandMeshRecord animation above still uses the
+historical ZScanV02 detector; it is not output from a newly trained HandNet forest.
+
 ## Get the code and run
 
 ```sh
-git clone --recurse-submodules https://github.com/twerdster/HandNet.git
+git clone --branch tea-handnet-forest --recurse-submodules https://github.com/twerdster/HandNet.git
 cd HandNet/external/depthtrack
 cmake -S . -B build/native -DCMAKE_BUILD_TYPE=Release
 cmake --build build/native --parallel 4
@@ -38,6 +70,11 @@ Open `http://localhost:8000`, or use the hosted HTTPS demo on a phone. Play/paus
 
 ## Platforms and scope
 
+The table describes the preserved tracking/packed-model paths. Complete deep
+Tea forests currently execute on Mac/Linux CPU only; the new guide above records
+that separate backend's scope.
+
+
 | Platform | Implementation | Evidence boundary |
 | --- | --- | --- |
 | Mac | Native C++/Python tracking, C++ tree inference, Metal GPU, browser | Actual native, numerical and Metal execution |
@@ -50,6 +87,6 @@ The [base README](https://github.com/twerdster/depthtrack#run-on-each-platform) 
 
 ## Relationship to HandNet
 
-The recovered ZScanV02 classifier's training dataset and its relationship to **HandNet are unverified**. No training occurred during this work, and training/test independence of the recording is unknown. This integration makes related reusable code and evidence accessible; it does not reproduce the HandNet neural network, paper metric or held-out evaluation.
+The recovered ZScanV02 classifier's training dataset and its relationship to **HandNet are unverified**. This integration did not retrain its historical detector or generate a new HandNet model; training/test independence of the recording is unknown. A separate [bounded HandNet campaign](tea-training.md) is staged and waiting for GPU resources; no new trained model or held-out result is available. This integration makes related reusable code and evidence accessible; it does not reproduce the HandNet neural network, paper metric or held-out evaluation.
 
 HandNet's historical MATLAB scripts, calibration/indices files, citation, academic-use code notice and dataset licensing remain unchanged. DepthTrack has its own [component notices](https://github.com/twerdster/depthtrack/blob/main/NOTICE.md); HandNet's dataset license is not assigned to unrelated recovered recordings or historical/vendor code.
