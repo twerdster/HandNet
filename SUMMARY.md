@@ -44,7 +44,7 @@ DepthTrack contains portable C++17/C ABI, NumPy and JavaScript tracking, CPU/Met
 
 The demo uses130 HandMeshRecord depth frames and recovered ZScanV02 model detections. Training dataset/HandNet relationship and train/test independence are unverified. No new HandNet network training or paper accuracy is claimed. Detector-relative tracking residuals improve, with original and improved states preserved on identical inputs. Historical MATLAB/calibration/indices bytes, original attribution, data/code terms and existing website remain unchanged.
 
-## Native Tea forest integration — 2026-11-15
+## Native Tea forest integration — 2026-11-15 (historical stage)
 
 The isolated `tea-handnet-forest` worktree starts from the clean historical
 `master` commit `0a72574`; the original checkout remains unchanged.
@@ -91,7 +91,7 @@ reports Success at `de06719`; Tea tooling run
 reports Success at `27ae728`. CI implementation/tooling checks are separate from
 the separately monitored GPU campaign and held-out scientific evaluation.
 
-## HandNet parity harness pin — 2026-11-15
+## HandNet parity harness pin — 2026-11-15 (historical stage)
 
 The current `external/depthtrack` gitlink is reviewed public commit
 `6bbbe74711b4f3dc77699291c84876fff405db52` on `tea-handnet-forest`, advanced from
@@ -108,34 +108,49 @@ Native/Python queried masks, labels, heaps and probabilities agreed, with calibr
 observation/tracker/history agreement within the recorded tolerances. This is
 harness validation only: it is not an actual trained-model parity result, held-out
 recognition score or measured temporal accuracy. It remains separate from the
-completed pilot validation and the pending full-tree campaign described below.
+pilot validation and the then-pending full-tree campaign. The completed original
+forest evaluation is recorded below.
 
 Integration validation rechecks remote reachability, normal recursive checkout,
 relative guide links and all 10 original MATLAB/MAT file hashes. Native builds/tests
 are not repeated because this pin changes tools/docs/evidence only; the previous
 fresh CLI fixture check and upstream native validation retain their stated scope.
 
-## Pilot completion and full-tree preparation — 2026-11-15 16:35 UTC
+## Completed original forest evaluation — 2026-11-16
 
-All eight pilots and 48 configurations have completed validation on the same
-frozen 300 validation frames. The best learned-background eight-class pilot uses
-probe 25000, 20 decisions and threshold 0.5; validation F1@15mm is
-0.23650137167567786. The best seven-class pilot at scale 25000 reports 0.2273385.
-These are pilot selection F1 scores, not classification-accuracy percentages,
-final ensemble/test metrics, paper reproduction or participant-independent proof.
+All three full trees (seeds 201/202/203) completed 20 split decisions with 1200
+features and 181,979 training frames per tree. Sample counts are 84,759,330 /
+84,758,588 / 84,759,516. Frozen training source remains Tea
+`27ae728e9cb012d2255337d9b3583bbe7f66b3cc`; documentation publication does not change
+that implementation identity. All 20 checkpoints/model headers/finite posteriors,
+retained copies and independent saved-prediction checks passed. Historical pilot
+scores and the earlier stage records above remain dated evidence, not current
+status.
 
-Learned background and scale 25000 are selected for full-tree training preparation.
-Tree 0 feature conversion started 2026-11-15 16:27:33 UTC and is underway at this
-snapshot; no complete full-tree model exists yet. Final deployment depth and
-probability threshold will be selected from validation after all three full trees
-are available. Keep the existing queue, budget and two-hour monitor through this
-stage and final evaluation. Do not describe the pilot's 20/.5 setting as a frozen
-final deployment configuration.
+The frozen 300-validation-frame, 24-case final grid selected both the ensemble and
+best single (seed 202) at 20 decisions, probability cutoff 0.25, four-connected
+minimum component support 3, foreground `none` and fingertip classes 0..4. All 2,773
+validation frames report mean fingertip F1@15mm 0.3833437004586795 ensemble /
+0.3370599042841775 single; this descriptive cohort includes the selection subset.
+Both original 10,000-frame test evaluations independently audited PASS:
+**0.37494755678731473 ensemble / 0.32798765233655836 single**. No test-driven
+retuning was performed. Official random-frame splits do not establish subject/
+session independence; these modest largest-component/sensor-reference results
+are not the BMVC 2015 paper metric, calibrated probabilities or a temporal benchmark.
+Any later optional 200m/256 comparison after disclosure is exploratory.
 
-The HandNet guides now report this dated stage and link the
-[Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
-for the experiment, metric definition, foreground policies and recorded pilot
-native/Python parity. Public report availability was verified at Tea commit
-`651a95d` before this HandNet update. Preserve
-the current DepthTrack gitlink 6bbbe74711b4f3dc77699291c84876fff405db52 and all
-historical source/data/calibration bytes. This change is documentation-only.
+Actual selected ensemble/single native/Python parity passed on Linux/Mac using
+three training frames, both foreground policies and synthetic 0.1 s cadence: exact
+labels/probability bytes/heaps/ROI; observation/tracker differences <= 3.411e-13 mm,
+Linux/Mac difference 0. This is numerical agreement, not measured temporal accuracy
+or latency. Historical untrained-fixture parity and the HandMeshRecord animation
+retain their separate scope.
+
+The guides link the [Tea final report](https://github.com/twerdster/tea/blob/main/docs/handnet-forest-results.md),
+[safe aggregate](https://github.com/twerdster/tea/blob/main/docs/evidence/handnet-forest-2026-11-16.json)
+and selected-model release tag `handnet-forest-2026-11-16`. Dataset CC BY 4.0 attribution
+and original historical MATLAB terms remain separate; no blanket model license
+is declared. Source/docs links and the true submodule gitlink must be synchronized
+to the reviewed DepthTrack documentation commit before publication. No website
+navigation, MATLAB/MAT/calibration/indices bytes, original worktree or training
+process is changed by this integration.

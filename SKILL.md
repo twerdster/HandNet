@@ -62,18 +62,19 @@ features, posterior normalization, centre-mask policy, calibration and real
 monotonic timestamps are explicit contracts. Keep historical packed ten-decision
 CPU/Metal/FPGA and mobile-tracker evidence separate from deep Tea CPU execution.
 
-Keep training status separate from implementation parity and the older recorded
-tracking demo. Keep status dated: as of 2026-11-15 16:35 UTC, eight pilots/48
-validation configurations are complete and first-full-tree conversion is underway.
-Report validation F1 explicitly as a pilot selection score, not an accuracy
-percentage or final ensemble/test metric. Learned background and scale 25000 were
-selected for full-tree preparation; final deployment depth/threshold remain to be
-selected after all three full trees. Keep those trees under the existing queue,
-budget and recurring monitor; do not claim complete full models before verification. A
-HandNet documentation/submodule integration does not independently launch work,
-change that budget or control unrelated jobs. Select configuration on validation
-and reserve test data for final metrics; randomized frame splits do not prove
-participant-independent generalization.
+Keep training quality separate from numerical parity and the older tracking demo.
+The original three full trees and their 10,000-frame final evaluations completed
+2026-11-16. Report mean fingertip F1@15mm 0.37494755678731473 ensemble /
+0.32798765233655836 best single (seed 202); descriptive 2,773-frame validation is
+0.3833437004586795 / 0.3370599042841775 and includes the 300-frame selection subset.
+The 24-case final grid froze 20 decisions/cutoff 0.25/minimum four-connected support 3/
+foreground `none`/fingertip IDs 0..4 before test inputs. Preserve frozen Tea training
+revision 27ae728e9cb012d2255337d9b3583bbe7f66b3cc separately from newer docs commits.
+Keep modest-result, operational metric, missed/absent-finger accounting and random-
+frame/subject-independence limitations explicit. Additional post-disclosure
+experiments are exploratory, not independent untouched confirmation. This HandNet
+integration does not independently launch work, change authorized budgets or
+control unrelated jobs.
 
 Before a commit, synchronize this SKILL and SUMMARY, verify every historical
 MATLAB/MAT source/data/calibration/index byte remains unchanged, check guide links
@@ -90,26 +91,35 @@ Keep current backend/tool/CI links aligned with the exact reviewed submodule pin
 The `validate_tea_handnet.py` tool compares supplied deployment artifacts and the
 matching Python reference on identical train/validation frames; it is separate
 from training, model selection and final-test evaluation. Declare model and data
-roles and timestamp provenance. The current recorded three-frame check uses an
-untrained synthetic forest and synthetic 0.1 s timestamps on real training frames;
-do not report it as an actual trained-model result or temporal/recognition accuracy.
-Record a separate check after selected trained artifacts exist. A skipped Pages
+roles and timestamp provenance. The historical fixture record uses an
+untrained forest and synthetic 0.1 s timestamps on real training frames. The actual
+selected ensemble and seed 202 single now have separate Linux/Mac parity on the
+same 3 training frames, both foreground policies, cutoff 0.25/minimum support 3: exact pixel outputs,
+observation/tracker differences <= 3.411e-13 mm and Linux/Mac difference 0. Both
+records use synthetic cadence and establish numerical agreement only; do not
+claim measured temporal accuracy, held-out recognition or latency from parity. A skipped Pages
 job is not a website deployment. Tool/docs-only pin changes need reachability,
 recursive checkout and protected-byte checks; repeat native builds/tests only
 when source behavior changes or another unresolved concern justifies them.
 
-## Publishing pilot status
+## Publishing completed forest results
 
-Replace obsolete waiting/no-results statements with a dated stage and verified
-pilot scope. Preserve the frozen 300-validation-frame denominator and distinguish
-eight trained pilots/48 validation configurations from three pending full trees.
-Keep official randomized frame splits distinct from subject-independent evidence,
-and final test metrics distinct from validation selection. The
-[Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
-is the detailed comparison/metric reference. Report links may be prepared during
-review; verify public Tea publication before committing or publishing the HandNet
-update. Distinguish the original untrained-fixture harness record from the
-selected pilot's separately recorded native/Python parity and pending full-model
-checks.
-This documentation maintenance does not change the gitlink, historical MATLAB/
-calibration/data bytes, training budget or active processes.
+Keep the preserved eight-pilot/48-configuration report distinct from the 24-case
+final selection grid, descriptive 2,773-validation-frame cohort and 10,000-frame final test.
+The [Tea final report](https://github.com/twerdster/tea/blob/main/docs/handnet-forest-results.md)
+and safe evidence JSON are the detailed result/metric references. Selected assets
+use release tag `handnet-forest-2026-11-16`; verify public report/release availability
+and checksums before publishing links. Keep both frozen selected choices and no
+test-driven retuning explicit. Do not infer a blanket model license: embedded
+HandNet dataset CC BY 4.0 attribution is separate from historical MATLAB academic terms.
+
+Align backend/API/harness/selected-parity links with the exact reviewed published
+DepthTrack gitlink; preserve mode 160000 and verify ordinary recursive checkout.
+Recheck relative Markdown links, protected historical bytes and source revisions.
+Native code/builds need not be repeated for documentation-only pin changes when
+prior executed numerical/native checks retain their stated scope. Keep the
+recurring monitor through original result reporting/publication/integration;
+only pause after all watched work finishes and results are reported, or user
+cancellation. A pending optional experiment-scope question must not indefinitely
+block reporting the already authorized original campaign. No additional training
+follows from documentation maintenance.

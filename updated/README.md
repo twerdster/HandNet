@@ -10,7 +10,7 @@ provides a larger 96-sample research viewer. This repository retains its
 historical MATLAB scripts: the viewer does not execute their preprocessing
 scripts, train a model or run learned fingertip inference.
 
-### Native forests and staged HandNet training
+### Native forests and completed HandNet evaluation
 
 The pinned [DepthTrack integration](depthtrack.md) now includes a native C++17
 Tea forest loader and API for complete 20-decision, three-tree CPU inference,
@@ -21,16 +21,25 @@ hand-only and optional eight-class learned-background models have explicit,
 separate label contracts. This deep Tea path is separate from the historical
 packed ten-decision CPU/Metal/FPGA example and from the browser viewer.
 
-The [HandNet forest workflow](tea-training.md) links the repaired Tea trainer,
-reproducible class-aware conversion and held-out evaluation. As of **2026-11-15
-16:35 UTC**, all eight pilots and 48 validation configurations are complete on a
-frozen 300-frame validation set. Probe scale 25000 with learned background was
-selected for full-tree training preparation, and the first tree's feature
-conversion is underway. Final ensemble/test results are pending. The winning
-pilot's depth/confidence setting is not yet a final deployment choice; those
-settings will be selected after all three full trees are available.
-The [Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
-provides the frozen validation protocol, comparison settings and metric limits.
+The [HandNet forest workflow](tea-training.md) records the repaired Tea trainer,
+three completed 20-decision trees and independently audited final evaluation.
+On **10,000 official test frames**, mean fingertip **F1@15mm is 0.37495 for the
+three-tree ensemble and 0.32799 for the best single tree (seed 202)**. Full
+2,773-frame validation reports 0.38334 and 0.33706 respectively; it includes the
+300-frame subset used to select settings and is descriptive.
+
+Both selected deployments use 20 split decisions, probability cutoff 0.25,
+minimum four-connected component support 3 pixels, no depth-only foreground ROI,
+and fingertip classes 0..4. Their eight modeled classes include learned
+background. Settings and the best single were frozen from 24 validation
+configurations before test inputs; no test-driven retuning was performed.
+See the [audited Tea results](https://github.com/twerdster/tea/blob/main/docs/handnet-forest-results.md)
+and [selected-model release](https://github.com/twerdster/tea/releases/tag/handnet-forest-2026-11-16).
+The earlier [eight-pilot report](https://github.com/twerdster/tea/blob/main/docs/handnet-pilots.md)
+remains the record of class/scale selection. These are modest operational
+localization results, not paper reproduction, participant-independent proof or
+measured tracking accuracy. The separate browser viewer still runs no learned
+model inference.
 
 ### Open and use
 

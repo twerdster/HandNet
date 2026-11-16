@@ -41,18 +41,29 @@ complete temporal tracker state/history. Its
 passed on three real training frames using an **untrained synthetic fixture
 forest** and **synthetic 0.1 s timestamps**. This verifies integration agreement;
 it is not a trained-model result, recognition score or measured temporal accuracy.
-A selected trained model still requires its own separately recorded parity check.
+The selected trained ensemble and seed-202 single now also passed their own
+[actual-model native/Python check](https://github.com/twerdster/depthtrack/blob/tea-handnet-forest/docs/tea-handnet-selected-model-validation.json)
+on Linux and Mac: the same three **training** frames, both foreground policies,
+cutoff 0.25/minimum support 3. Labels, posterior bytes, reached heaps and ROI
+masks match exactly. Calibrated observation/tracker differences are at most
+3.411e-13 mm; Linux/Mac outputs match exactly. The synthetic 0.1 s cadence makes
+this numerical parity evidence, not a temporal benchmark or latency measurement.
 
 The deep Tea backend has not been ported to Metal, mobile inference or FPGA.
 The older packed seven-class ten-decision hardware examples remain separate.
 
-[HandNet forest training and held-out evaluation](tea-training.md) uses the
-repaired Tea source as a separate stage. As of **2026-11-15 16:35 UTC**, its eight
-pilots and 48 validation configurations are complete; scale 25000 with learned
-background was chosen for full-tree training preparation. Feature conversion for
-the first full tree is underway; no complete full-tree ensemble or final-test
-metrics are available. The recorded HandMeshRecord animation above still uses
-the historical ZScanV02 detector, not the new pilot or pending full-tree models.
+[HandNet forest training and held-out evaluation](tea-training.md) now records
+three completed full trees and independently audited 10,000-frame test results:
+mean fingertip F1@15mm **0.37495 ensemble / 0.32799 best single (seed 202)**.
+Full 2,773-frame validation is 0.38334 / 0.33706 and includes the selection
+subset. Both deployments were fixed on 300 validation frames at 20 decisions,
+cutoff 0.25, minimum support 3 pixels, foreground `none` and fingertip IDs 0..4.
+The [Tea results report](https://github.com/twerdster/tea/blob/main/docs/handnet-forest-results.md)
+and [release](https://github.com/twerdster/tea/releases/tag/handnet-forest-2026-11-16)
+provide the metric, provenance, assets and limits. Official random-frame splits
+do not prove subject independence; these modest results are not the paper metric.
+The HandMeshRecord animation above still uses the historical ZScanV02 detector,
+not the newly trained HandNet ensemble.
 
 ## Get the code and run
 
@@ -99,6 +110,6 @@ The [base README](https://github.com/twerdster/depthtrack#run-on-each-platform) 
 
 ## Relationship to HandNet
 
-The recovered ZScanV02 classifier's training dataset and its relationship to **HandNet are unverified**. The recorded demo did not retrain its historical detector, and training/test independence of the recording is unknown. The separate [bounded HandNet campaign](tea-training.md) has completed pilot training/validation and begun full-tree feature conversion as of 2026-11-15 16:35 UTC. Pilot selection scores are distinct from pending full-ensemble and final-test metrics. This integration makes related reusable code and evidence accessible; it does not reproduce the HandNet neural network, paper metric or held-out evaluation.
+The recovered ZScanV02 classifier's training dataset and its relationship to **HandNet are unverified**. The recorded demo did not retrain its historical detector, and training/test independence of the recording is unknown. The separate [bounded HandNet campaign](tea-training.md) has completed three-tree training and audited held-out evaluation. That operational largest-component fingertip evaluation is distinct from the original paper metric, the historical recording and synthetic tracking parity. This integration makes related code and evidence accessible; it does not reproduce the HandNet neural network.
 
 HandNet's historical MATLAB scripts, calibration/indices files, citation, academic-use code notice and dataset licensing remain unchanged. DepthTrack has its own [component notices](https://github.com/twerdster/depthtrack/blob/main/NOTICE.md); HandNet's dataset license is not assigned to unrelated recovered recordings or historical/vendor code.

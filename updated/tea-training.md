@@ -1,117 +1,135 @@
-# Staged HandNet forest training and evaluation
+# HandNet forest training and evaluation
 
-HandNet now links a complete native Tea forest CPU/API path through its pinned
-[DepthTrack submodule](depthtrack.md). Training new HandNet models and measuring
-their quality are separate stages from implementing that inference backend.
+HandNet links the complete native Tea forest CPU/API through its pinned
+[DepthTrack submodule](depthtrack.md). The repaired training campaign and its
+original final evaluation are complete as of **2026-11-16**.
 
-## Current state — 2026-11-15 16:35 UTC
+## Audited final results
 
-The repaired trainer and conversion/reference pipeline are available in
-[Tea's `handnet-forest-training` branch](https://github.com/twerdster/tea/tree/handnet-forest-training),
-starting with [reviewed commit `27ae728`](https://github.com/twerdster/tea/commit/27ae728).
-All **eight pilots** have completed. Their **48 validation configurations** were
-compared on the same frozen **300 validation frames**; final test data did not
-select these settings. The [Tea pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
-defines the experiment grid, metric, foreground policies and limitations.
+Three independently sampled, eight-class trees each completed **20 split
+decisions** using **1,200 features** and **181,979 training frames**. Seeds
+201/202/203 produced 84,759,330 / 84,758,588 / 84,759,516 sampled pixels. The
+training implementation remained frozen at
+[Tea `27ae728e9cb012d2255337d9b3583bbe7f66b3cc`](https://github.com/twerdster/tea/commit/27ae728e9cb012d2255337d9b3583bbe7f66b3cc).
+Each tree retains its exact coordinate bank and complete checkpoints. The
+ensemble averages the normalized per-tree leaf posteriors with equal weights.
 
-| Pilot comparison | Probe scale | Mean fingertip F1@15mm |
+| Frozen model | Official test: 10,000 frames | Full validation: 2,773 frames |
 | --- | ---: | ---: |
-| Best learned-background (eight-class) pilot | 25000 | 0.236501 |
-| Best seven-class pilot | 25000 | 0.227339 |
+| Three-tree ensemble, seeds 201/202/203 | **0.37494755678731473** | 0.3833437004586795 |
+| Best single, seed 202 | **0.32798765233655836** | 0.3370599042841775 |
 
-The best eight-class pilot used 20 split decisions and a 0.5 probability threshold.
-These are pilot validation selection scores, not final forest results or a
-classification-accuracy percentage. Scale 25000 and learned background were
-selected for full-tree training preparation. **Final deployment depth and
-probability threshold remain to be selected** from validation predictions after
-all three full trees are available; the pilot's 20/.5 settings are not frozen as
-the final configuration.
+Values are **mean fingertip F1@15mm**, averaged over thumb/index/middle/ring/pinky,
+not pixel-classification accuracy. For each finger the operational score is
+`2 × hits_within_15mm / (sensor_present + sensor_detected + false_positive_on_absent)`;
+present fingers with missing detections remain failures. Positions use valid
+HandNet sensor references and the documented calibrated largest-component
+localizer. The full-validation column includes the selection subset and is
+**descriptive**, not another untouched confirmation.
 
-The full-training stage has begun with feature conversion for tree 0, started
-**2026-11-15 16:27:33 UTC**. No complete full-tree models, final three-tree ensemble
-metrics or final-test results are available at this dated snapshot. Training
-remains sequential under the existing GPU queue, budget and recurring monitor.
-Failures retain evidence and need a diagnosis before a replacement run; the
-monitor does not expand the budget or control unrelated GPU jobs.
+The ensemble produced false-positive predictions on **3,231 of 3,232 absent-finger
+occasions**; the single predicted a fingertip on all 3,232. Absent-finger handling
+remains a substantial limitation despite the ensemble's higher frozen-metric F1.
+These modest results improve on the best single under the frozen metric. They
+do not reproduce the BMVC 2015 neural network/mean-shift paper metric, establish
+subject-independent generalization, calibrated posterior probabilities, temporal
+tracking accuracy or inference latency. Official randomized frame splits alone
+do not establish participant/session independence. Any additional 200m/256
+experiment after disclosure of these test outcomes would be exploratory;
+preparation of that optional experiment is not an additional completed result.
 
-The original source checks passed:
-[Tea tooling CI](https://github.com/twerdster/tea/actions/runs/43717599628) for
-`27ae728`, and [DepthTrack CI](https://github.com/twerdster/depthtrack/actions/runs/43719231425)
-for its pinned `6bbbe74` backend. Implementation CI and synthetic parity checks
-are distinct from pilot validation and the pending full-model evaluation.
+The [Tea final-results report](https://github.com/twerdster/tea/blob/main/docs/handnet-forest-results.md)
+and its [safe aggregate evidence](https://github.com/twerdster/tea/blob/main/docs/evidence/handnet-forest-2026-11-16.json)
+contain full counts, foreground/classification metrics and provenance. Selected
+artifacts are indexed by release tag
+[`handnet-forest-2026-11-16`](https://github.com/twerdster/tea/releases/tag/handnet-forest-2026-11-16).
+Use the release checksums and each package's manifest; do not substitute coordinate
+banks or rely on unrelated historical packed-model assets. Attribution remains
+attached; no blanket model license is inferred from the HandNet data license.
 
-Official randomized frame splits do not establish participant-independent
-generalization. The validation scores above do not reproduce the BMVC 2015 paper
-metric, and they do not establish measured temporal tracking performance.
+## Selection and protocol
 
-## Reproducible stages
+Eight pilots and 48 settings on the same frozen **300 validation frames** selected
+learned background and probe scale **25000 pixel·mm**. The
+[earlier pilot report](https://github.com/twerdster/tea/blob/main/docs/handnet-pilots.md)
+preserves their scores and foreground comparisons. After the three full trees
+finished, **24 validation configurations** compared the ensemble and each single
+at 12/16/20 decisions and probability thresholds 0.25/0.5. Test inputs did not
+select class mode, scale, tree, depth or cutoff.
+
+Both selected deployments freeze **20 decisions**, **0.25 probability cutoff**,
+**3-pixel minimum four-connected component support**, foreground **`none`**, and
+fingertip class IDs **0..4**. The best single is seed **202**. No ground-truth
+foreground mask enters these selected predictions; learned background is a
+modeled class. The largest surviving component uses a probability-weighted
+centroid and calibrated depth-to-XYZ projection. Both original 10,000-frame
+test evaluations and their metric/count arithmetic passed independent audit,
+without test-driven retuning. The later optional experiment cannot be called an
+independent untouched confirmation after these test results are known.
+
+Training remained sequential within the original monitored eight-pilot/three-final
+budget. All three finals exited successfully, retained 20 checkpoints and passed
+finite-model/header/copied-asset and saved-prediction checks. Source CI and
+numerical parity are implementation evidence; the audited held-out scores above
+are separate evidence of model quality. The historical modernization run's
+majority-class self-success is not evidence for the new forest's accuracy.
+
+## Reproducible workflow
 
 1. Freeze official training/validation/test membership and source frame identities.
-   Official randomized frame splits alone do not establish participant-independent
-   generalization.
-2. Prepare class-aware training samples with separate frame, pixel and coordinate
-   seeds. Compare historical probe 50 and spatial-scale hypotheses 5000/25000/50000
-   on validation data; no best scale is established by implementation tests.
-3. Train each tree with its own recorded feature/sample diversity. Tea CLI depth 19
-   means 20 split decisions; the output tree index is not an RNG seed. Preserve
-   atomic depth checkpoints and each tree's exact `Coords.co`.
-4. Freeze a native forest manifest with model/coordinate checksums, depth units,
-   float32 feature rules, image geometry, class semantics and tree aggregation.
-5. Compare actual validation predictions, individual trees and the ensemble.
-   Select depth and postprocessing thresholds without using final test data.
-6. Evaluate the selected configuration on untouched test data. Report natural-
-   distribution segmentation metrics, foreground errors and fingertip localization
-   recall/coverage, including missed present fingertips.
+2. Prepare class-aware samples with separate frame, pixel and coordinate seeds.
+   Retain each tree's exact coordinate bank and feature profile.
+3. Train independently sampled trees with atomic depth checkpoints. Tea CLI/header
+   depth 19 means 20 split decisions; the output tree index is not an RNG seed.
+4. Freeze a manifest containing model/coordinate checksums, millimetre depth units,
+   float32 feature rules, image geometry, class order and posterior aggregation.
+5. Select individual trees/ensemble, depth and postprocessing on validation only.
+6. Evaluate untouched test frames using those frozen choices; report misses,
+   absent-finger false positives, foreground errors and the evaluation domain.
 
-The [Tea deep-training guide](https://github.com/twerdster/tea/blob/27ae728/docs/deep-training.md)
-contains bounded preparation/training commands, memory estimates, checkpoint
-semantics and queue/monitoring requirements. The
-[HandNet conversion and evaluation guide](https://github.com/twerdster/tea/blob/27ae728/docs/handnet.md)
-defines class sampling, provenance and held-out metrics. The historical
-10,000-frame modernization run reported majority-class self-success before the
-trainer repairs; it is not evidence that the new forest is accurate.
+The [Tea deep-training guide](https://github.com/twerdster/tea/blob/27ae728e9cb012d2255337d9b3583bbe7f66b3cc/docs/deep-training.md)
+contains bounded commands, memory/checkpoint semantics and monitoring requirements.
+The [HandNet conversion/evaluation guide](https://github.com/twerdster/tea/blob/27ae728e9cb012d2255337d9b3583bbe7f66b3cc/docs/handnet.md)
+defines class sampling, provenance and metrics. Preserve failure evidence and
+validate a diagnosis before a replacement run; monitoring never expands budget
+or permits interference with unrelated GPU work.
 
-## Inference integration
+## Inference integration and numerical checks
 
 The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/docs/tea-forest.md)
-provides the C++17 loader/CPU CLI/API for complete 20-decision, three-tree forests,
-calibrated fingertip observations and timestamp-aware temporal tracking. It
-checks the native model layout and exact coordinate banks, normalizes each leaf
-posterior, and combines tree probabilities. Synthetic tests verify numerical
-and deep-path correctness; recognition quality needs the staged evaluations above.
+provides C++17 loading, CPU CLI/API, calibrated fingertip observations and
+timestamp-aware tracking for complete forests. Deep native Tea executes on
+**Mac/Linux CPU**. The historical ten-decision Metal/mobile/FPGA paths do not
+establish support for this complete forest format.
 
-The pinned [parity and tracking harness](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/tools/validate_tea_handnet.py)
-can compare selected deployment artifacts against the matching Tea Python
-reference on identical train/validation frames. The published harness check used
-three real training frames, an **untrained synthetic fixture forest** and
-**synthetic 0.1 s timestamps**. It passed implementation agreement checks only;
-that original fixture check is separate from trained-model evidence. The
-[pilot report](https://github.com/twerdster/tea/blob/handnet-forest-training/docs/handnet-pilots.md)
-also records native/Python parity for the selected pilot on three training frames.
-Full-model parity, final held-out recognition and temporal accuracy remain
-separate from those implementation checks.
-
-The HandNet label modes are explicit:
+The [parity harness](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/tools/validate_tea_handnet.py)
+and [selected-model evidence](https://github.com/twerdster/depthtrack/blob/tea-handnet-forest/docs/tea-handnet-selected-model-validation.json)
+record the actual selected ensemble and seed-202 single on **three training
+frames**, both `none`/`near-component` foreground policies, cutoff 0.25 and support
+3. Labels, probability bytes, reached heaps and ROI masks match exactly between
+Python/native inference on Linux/Mac. Observation/tracker difference is at most
+**3.411e-13 mm**, and Linux/Mac outputs match exactly. The timestamps are
+**synthetic 0.1 s cadence**: this verifies numerical implementation agreement,
+not held-out recognition, temporal tracking accuracy or latency. The earlier
+untrained-fixture harness record remains separate.
 
 | Mode | Modeled classes | Foreground/invalid-centre contract |
 | --- | --- | --- |
-| Seven classes | thumb, index, middle, ring, pinky, palm, wrist (`0..6`) | Needs a foreground policy; invalid/excluded centres are outside modeled classes |
-| Optional eight classes | the same seven plus valid-depth raw label 0 mapped to learned background 7 | Learned background 7 is distinct from invalid-centre 8 and unknown/no-vote 255 |
+| Seven classes | thumb, index, middle, ring, pinky, palm, wrist (`0..6`) | Needs a foreground policy; excluded centres lie outside modeled classes |
+| Selected eight classes | those seven plus valid-depth raw label 0 mapped to learned background 7 | Learned background 7 is distinct from invalid-centre 8 and unknown/no-vote 255 |
 
-A centre mask restricts queried pixels without altering raw-depth neighbour
-lookups. Metric XYZ observations also need the selected camera/crop's calibrated
-intrinsics and real monotonic timestamps. The preserved HandNet `Parameters.mat`
-is unchanged and must not be treated as a universal camera calibration.
-
-Deep native Tea currently executes on Mac/Linux CPU. Metal, mobile and FPGA
-support for the historical packed ten-decision model does not imply support for
-this complete forest format. The browser demo and its recorded tracking results
-remain the historical detector path, not results from new HandNet training.
+A centre mask restricts queried pixels without changing raw-depth neighbour
+lookups. Metric XYZ observations require the camera/crop's calibrated intrinsics;
+real temporal deployment requires monotonic measured timestamps. The unchanged
+HandNet `Parameters.mat` is not universal camera calibration. The browser viewer
+and recorded HandMeshRecord tracking animation still use their original data/
+detector paths, not these new HandNet model outputs.
 
 ## Historical tools and terms
 
 The [original MATLAB workflow](../README.md#visualize-a-dataset-split), calibration,
-indices, attribution and archive provenance remain unchanged. The separate
-trainer/backend does not reproduce the HandNet neural network or BMVC 2015 paper
-metric. [Code and dataset terms](../README.md#license) retain their original scope;
-linking these repositories does not relicense historical/vendor code or recordings.
+indices, attribution and archive provenance remain unchanged. No MATLAB/Octave
+runtime or original preprocessing/paper reproduction follows from this separate
+trainer/backend. [Code and dataset terms](../README.md#license) retain their
+scope: HandNet dataset CC BY 4.0 attribution is separate from the historical
+MATLAB academic-use notice and unrelated recovered/vendor code or recordings.
