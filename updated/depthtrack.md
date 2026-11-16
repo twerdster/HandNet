@@ -13,9 +13,9 @@ On373 comparable samples where the original tracker was freshly matched,95th-per
 ## Complete native Tea forests
 
 The submodule is deliberately pinned to
-[`1b3f86d`](https://github.com/twerdster/depthtrack/commit/1b3f86dd315d23a495b387c607ba3be4cb51662e).
-Its [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-forest.md)
-and [C++ API](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/include/depthtrack/tea_forest.hpp)
+[`3560607`](https://github.com/twerdster/depthtrack/commit/356060770b65e5c60ef5db702482da8a30f7dbb0).
+Its [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/tea-forest.md)
+and [C++ API](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/include/depthtrack/tea_forest.hpp)
 cover complete 20-decision trees and three-tree forests with their exact
 `Coords.co` banks. Each leaf posterior is normalized before the weighted tree
 mean. The optional calibrated observation stage and existing tracker consume
@@ -32,22 +32,28 @@ CLI outputs and label/coordinate/aggregation rules.
 Mac and Linux CPU execution passed all six native tests, including independent
 portable-fixture comparisons and all 20 decisions of a three-tree forest. These
 are synthetic correctness checks; they establish no HandNet accuracy result.
-The reviewed change passed [hosted Mac/Linux/Android CI](https://github.com/twerdster/depthtrack/actions/runs/43786447391)
-before its merge to `main`. The exact pinned merge also passed the current
-[default-branch CI/Pages run](https://github.com/twerdster/depthtrack/actions/runs/43786623292).
-Both hosted HTML routes and 17 deployed assets match the reviewed source bytes;
-this does not establish physical-phone execution or anatomical accuracy. The
-combined source retains the separate live-camera route described below; neither
-route changes the other's model contract.
-The new [native/Python HandNet parity harness](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/tools/validate_tea_handnet.py)
+The current documentation/evidence update merged through
+[DepthTrack PR2](https://github.com/twerdster/depthtrack/pull/2). Its reviewed head
+passed hosted Mac/Linux/Android checks in
+[run 43832512300](https://github.com/twerdster/depthtrack/actions/runs/43832512300)
+and [run 43832414751](https://github.com/twerdster/depthtrack/actions/runs/43832414751).
+Pages was skipped on the feature branch; this exact merge's
+[main CI run 43832975971](https://github.com/twerdster/depthtrack/actions/runs/43832975971)
+passed Mac, Ubuntu, Android and Pages. Its iOS static cross-build and historical
+FPGA simulation passed separately; they do not establish phone runtime or seed204
+hardware inference. Runtime, browser, camera/model assets and earlier
+recorded-route evidence are unchanged by this docs/evidence-only update. It does
+not establish physical-phone execution or anatomical accuracy; neither browser
+route changes its model contract.
+The new [native/Python HandNet parity harness](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/tools/validate_tea_handnet.py)
 compares identical depth frames through inference, calibrated observations and
 complete temporal tracker state/history. Its
-[recorded harness check](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-handnet-harness-validation.json)
+[recorded harness check](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/tea-handnet-harness-validation.json)
 passed on three real training frames using an **untrained synthetic fixture
 forest** and **synthetic 0.1 s timestamps**. This verifies integration agreement;
 it is not a trained-model result, recognition score or measured temporal accuracy.
 The selected trained ensemble and seed-202 single now also passed their own
-[actual-model native/Python check](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-handnet-selected-model-validation.json)
+[actual-model native/Python check](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/tea-handnet-selected-model-validation.json)
 on Linux and Mac: the same three **training** frames, both foreground policies,
 cutoff 0.25/minimum support 3. Labels, posterior bytes, reached heaps and ROI
 masks match exactly. Calibrated observation/tracker differences are at most
@@ -69,6 +75,44 @@ provide the metric, provenance, assets and limits. Official random-frame splits
 do not prove subject independence; these modest results are not the paper metric.
 The HandMeshRecord animation above still uses the historical ZScanV02 detector,
 not the newly trained HandNet ensemble.
+
+## Optional seed204 CPU model
+
+The separate exploratory single-tree recipe in
+[the training guide](tea-training.md#optional-exploratory-200m256-comparison) uses
+200,216,884 samples, 256 features and the matched original tree-0 frame bag. Its
+independently audited test F1@15mm is **0.330230**, versus **0.340204** for matched
+seed201; the original three-tree forest remains the default. The optional
+published **prerelease** package is indexed by
+[`handnet-200m-256-seed204-2026-11-16`](https://github.com/twerdster/tea/releases/tag/handnet-200m-256-seed204-2026-11-16):
+
+| Download | Archive SHA256 |
+| --- | --- |
+| [tea-handnet-200m-256-seed204.zip](https://github.com/twerdster/tea/releases/download/handnet-200m-256-seed204-2026-11-16/tea-handnet-200m-256-seed204.zip) | `53b8fc95c5c8bc3f24c191e5ffda8a80787f64635e45d9e1a16c9dfbdf9006c6` |
+
+Verify the archive hash, extract into a new directory and retain its exact
+`forest.json`, model and coordinates. The existing generic Mac/Linux CPU CLI can
+load it explicitly, for example after extraction into `models/handnet-seed204`:
+
+```sh
+mkdir -p out
+build/native/depthtrack_tea models/handnet-seed204/forest.json \
+  /path/to/depth.u16 out/seed204 \
+  --timestamps /path/to/times-seconds.txt \
+  --observations out/seed204-observations.csv --tracks out/seed204-tracks.csv
+```
+
+The selected manifest fixes all 20 decisions, cutoff 0.25, support 3, foreground
+`none` and fingertip IDs 0..4. Supply 320×240 row-major uint16 depth in millimetres,
+matching calibration and real increasing timestamps. This optional artifact does
+not replace the original three-tree default or alter the browser replay/live
+camera models. It establishes no deep Metal, mobile or FPGA support. Consult the
+[Tea comparison report](https://github.com/twerdster/tea/blob/main/docs/handnet-comparison.md)
+for audited outcomes and exploratory limitations; numerical agreement is not
+tracking accuracy or latency.
+The pinned [seed204 native parity record](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/tea-handnet-seed204-validation.json)
+uses three training depth frames and synthetic 0.1 s timestamps on Linux/Mac.
+It checks numerical implementation agreement, separately from the held-out scores.
 
 ## Get the code and run
 
@@ -102,7 +146,7 @@ The pinned submodule also includes a separate [live monocular-depth page](https:
 
 The model gives relative depth, so a distance cutoff is approximate after calibration. Low-resolution monocular depth can lose finger geometry; the old tree's anatomical accuracy on this input is unverified. The compact tree has no nonzero-depth background class, and largest-class components are experimental observations, not the restored full detector's fingertip modes. This is browser execution, not FPGA execution or HandNet training.
 
-Actual Mac browser model inference and synthetic-camera start/stop/restart tests passed;75 numerical/lifecycle/app browser tests pass locally. No physical phone runtime or useful live webcam hand scene is claimed. [Setup, measurements and limits](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/monocular-live.md).
+Actual Mac browser model inference and synthetic-camera start/stop/restart tests passed;75 numerical/lifecycle/app browser tests pass locally. No physical phone runtime or useful live webcam hand scene is claimed. [Setup, measurements and limits](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/monocular-live.md).
 
 ## Platforms and scope
 

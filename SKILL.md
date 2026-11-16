@@ -50,7 +50,7 @@ Before every commit, review/update this SKILL and SUMMARY for behavior, workflow
 
 Keep `external/depthtrack` pinned to a reviewed, remotely reachable commit; its
 current published source branch is `main`, with exact reviewed pin
-`1b3f86dd315d23a495b387c607ba3be4cb51662e`. The gitlink must remain mode 160000.
+`356060770b65e5c60ef5db702482da8a30f7dbb0`. The gitlink must remain mode 160000.
 `updated/tea-training.md` connects the inference API to Tea's separate repaired
 `handnet-forest-training` source. Record exact reviewed commits and verify ordinary
 recursive checkout after pin changes. Preserve the original HandNet worktree.
@@ -76,6 +76,29 @@ frame/subject-independence limitations explicit. Additional post-disclosure
 experiments are exploratory, not independent untouched confirmation. This HandNet
 integration does not independently launch work, change authorized budgets or
 control unrelated jobs.
+
+Keep the optional seed204 package separate from the original default forest and
+best seed202 single. Its matched tree0 bag has 181,979 frames, 200,216,884 balanced
+samples and 256 exact saved coordinates; changing sampling/feature count and seed
+together does not isolate one causal factor. Link Tea's `docs/handnet-comparison.md`
+for the frozen six-setting validation protocol and audited reporting status.
+The optional release tag is `handnet-200m-256-seed204-2026-11-16`; preserve the
+reviewed ZIP checksum and verified public report/prerelease availability.
+The independent full-cohort audit passed: test F1 0.3302297543 versus matched201
+0.3402043018; full validation 0.3372283285 / 0.3477379235 includes the selection
+subset. Preserve these exploratory outcomes and all absent-finger accounting;
+do not promote or retune a model from test results. Raw-reference arithmetic uses
+supplied predictions and is separate from selected-model native inference parity.
+Use the generic Mac/Linux CPU loader explicitly; preserve the original default
+downloads, browser models/routes and reviewed submodule pin until deliberately
+advanced. No deep Metal/mobile/FPGA, temporal-accuracy or latency claim follows.
+Current backend/API/harness and optional seed204 parity links use exact published
+DepthTrack pin `356060770b65e5c60ef5db702482da8a30f7dbb0`. Its PR2 head passed
+Mac/Linux/Android checks; exact-merge main run `43832975971` also passed Mac,
+Ubuntu, Android and Pages. Preserve the distinction between source CI, hosted
+asset verification, iOS cross-builds and actual device/model runtime. Preserve historical
+stage pins when advancing current links. Refuse a dirty nested worktree; verify
+public reachability and ordinary recursive checkout before committing the gitlink.
 
 Before a commit, synchronize this SKILL and SUMMARY, verify every historical
 MATLAB/MAT source/data/calibration/index byte remains unchanged, check guide links
@@ -132,7 +155,7 @@ When advancing the live adapter pin, use the source-commit CI evidence (initial 
 
 ## Combined upstream preservation
 
-The current exact DepthTrack pin 1b3f86dd315d23a495b387c607ba3be4cb51662e combines
+The current exact DepthTrack pin 356060770b65e5c60ef5db702482da8a30f7dbb0 combines
 native Tea forests/selected HandNet results and the upstream live monocular
 experiment. Preserve both during future merges: do not replace browser camera/
 model/runtime files with the full forest assets, or turn compact-model browser

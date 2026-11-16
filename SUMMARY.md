@@ -6,11 +6,28 @@ MATLAB visualization, rotation, HDF5 preprocessing and saved-result inspection f
 
 ## Current integration — 2026-11-16
 
-The exact DepthTrack pin is `1b3f86dd315d23a495b387c607ba3be4cb51662e`,
+The exact DepthTrack pin is `356060770b65e5c60ef5db702482da8a30f7dbb0`,
 combining native Tea forest results/inference with the upstream live monocular
 camera experiment. Original three-tree training and both final test audits are
 complete; the dated historical stage records below are preserved for provenance.
 See the current combined-pin section for checkout/validation scope.
+
+The completed optional seed204 comparison uses 200,216,884 samples, 256 saved
+features and the same 181,979 ordered frames as original seed201/tree0. Independent
+raw-reference audits passed all four frozen full-cohort evaluations at 20
+decisions/cutoff 0.25/support 3/foreground none. Test F1@15mm is 0.3302297543 versus
+0.3402043018 for matched seed201; full validation is 0.3372283285 / 0.3477379235
+and includes the 300 selection frames. The jointly changed recipe is
+post-exposure exploratory and did not improve the matched test baseline; original
+forest defaults and validation selection remain unchanged.
+
+The guides link Tea's published comparison report at docs commit
+`5c991f6e439402e95d4b03673aa77383a1dd447e` and the optional
+`handnet-200m-256-seed204-2026-11-16` prerelease. Report/site availability and the
+anonymous ZIP download were verified; the archive matches the documented
+53b8fc95 checksum. The generic CPU CLI loads this model explicitly. Original
+browser routes remain unchanged; the current reviewed DepthTrack pin is recorded
+below. No new native build or MATLAB runtime is claimed here.
 
 ## Implementation evidence
 
@@ -169,7 +186,7 @@ At this stage the DepthTrack gitlink advanced to de334f7e2a89bcb607c8142cb007561
 
 DepthTrack sourcecommit de334f7 passed clean-checkout Mac/Linux, AndroidJNI, iOS static cross-builds and Pages in https://github.com/twerdster/depthtrack/actions/runs/43735739340 . The deployed `/depthtrack/live/` returned HTTP200 and hosted code/model assets match the pinned source bytes. Submodule-local75 browser tests pass; original MATLAB/`.mat` files have no changes.
 
-## Current combined DepthTrack pin — 2026-11-16
+## Combined DepthTrack pin — 2026-11-16 (historical stage)
 
 `external/depthtrack` is a true mode 160000 submodule at published `main` commit
 `1b3f86dd315d23a495b387c607ba3be4cb51662e`, merged through
@@ -202,3 +219,31 @@ relative links and all 10 historical MATLAB/MAT files against the original
 checkout. The original checkout and historical source/calibration/index bytes
 remain unchanged. No training, source archive, website navigation or unrelated
 workload is modified by the HandNet integration.
+
+## Current seed204 DepthTrack integration — 2026-11-16
+
+`external/depthtrack` deliberately advances to published `main` merge
+`356060770b65e5c60ef5db702482da8a30f7dbb0` through
+[DepthTrack PR2](https://github.com/twerdster/depthtrack/pull/2), from the historical
+combined pin above. Its reviewed head
+`fffa2156d5d3351095c409468451962ecec77375` passed hosted Mac/Linux/Android checks in
+[run 43832512300](https://github.com/twerdster/depthtrack/actions/runs/43832512300)
+and [run 43832414751](https://github.com/twerdster/depthtrack/actions/runs/43832414751).
+Feature-branch Pages was skipped as expected; exact merge/default-branch CI
+at `3560607` passed all four jobs in
+[run 43832975971](https://github.com/twerdster/depthtrack/actions/runs/43832975971):
+Mac desktop, Ubuntu desktop, Android build and Pages. The Mac iOS static
+cross-build step and Linux FPGA simulation also passed in their existing scope;
+they do not establish phone runtime or seed204 inference on historical hardware.
+
+Only DepthTrack context, its Tea backend guide and the seed204 parity aggregate
+changed upstream. Runtime/browser/camera/model/test/tool bytes are unchanged.
+Current backend/API/harness/parity links use the exact new pin; historical stage
+records retain their original commits. The optional seed204 model remains an
+explicit generic CPU choice and the original forest stays the default.
+
+The nested worktree was clean before and after anonymous public fetch/checkout.
+Published `main` reachability, true mode 160000 gitlink and ordinary recursive
+submodule checkout were verified, together with relative links and all 10
+historical MATLAB/MAT bytes. No native rebuild, MATLAB run, training or unrelated
+workload change accompanies this docs/evidence integration.
