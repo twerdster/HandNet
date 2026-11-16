@@ -35,8 +35,8 @@ do not reproduce the BMVC 2015 neural network/mean-shift paper metric, establish
 subject-independent generalization, calibrated posterior probabilities, temporal
 tracking accuracy or inference latency. Official randomized frame splits alone
 do not establish participant/session independence. Any additional 200m/256
-experiment after disclosure of these test outcomes would be exploratory;
-preparation of that optional experiment is not an additional completed result.
+experiment after disclosure of these test outcomes is exploratory; its separate
+recipe is described below.
 
 The [Tea final-results report](https://github.com/twerdster/tea/blob/main/docs/handnet-forest-results.md)
 and its [safe aggregate evidence](https://github.com/twerdster/tea/blob/main/docs/evidence/handnet-forest-2026-11-16.json)
@@ -46,6 +46,44 @@ artifacts are indexed by release tag
 Use the release checksums and each package's manifest; do not substitute coordinate
 banks or rely on unrelated historical packed-model assets. Attribution remains
 attached; no blanket model license is inferred from the HandNet data license.
+
+## Optional exploratory 200m/256 comparison
+
+A separately authorized **single tree, seed 204** uses **200,216,884 balanced
+pixel samples**, **256 saved coordinate features** and the same **181,979 ordered
+training frames as original tree 0 (seed 201)**. It retains eight modeled classes,
+probe scale 25000 pixel·mm and the frozen Tea `27ae728` training implementation.
+The exact saved coordinate bank is required; a seed alone is insufficient to
+reproduce its bytes. Sample count, feature count and sampling/coordinate seed
+change together, so this comparison does not isolate any one cause.
+
+Its six-setting grid uses the same frozen 300 validation frames: 12/16/20 decisions
+and cutoff 0.25/0.5. Independent validation audit froze 20 decisions/cutoff 0.25,
+minimum support 3 and foreground `none` for both seed 204 and the matched seed-201
+baseline before their new full-cohort evaluations. All four completed results
+passed independent raw-reference identity, count, hit, error and F1 auditing:
+
+| Cohort | Seed204: 200m/256 | Matched seed201: 84.8m/1200 |
+| --- | ---: | ---: |
+| Full validation, 2,773 frames | 0.3372283285 | 0.3477379235 |
+| Test, 10,000 frames | **0.3302297543** | **0.3402043018** |
+
+These are mean fingertip F1@15mm. The new recipe is about **0.997 percentage
+points lower** on test; the original three-tree forest remains the default.
+Full validation includes the 300 selection frames and is descriptive. Both
+primary models predict every absent-finger test occasion (3,232/3,232), so
+detection coverage does not establish reliable presence detection. The audit
+reconstructs raw truth and metric arithmetic from supplied predictions; it does
+not independently rerun inference. The published
+[Tea comparison report](https://github.com/twerdster/tea/blob/main/docs/handnet-comparison.md)
+([rendered guide](https://twerdster.github.io/tea/handnet-comparison/)) is the
+reference for full counts, metrics, provenance and verification limits.
+This optional experiment follows disclosure of the original test outcomes and
+remains **post-exposure exploratory**, not independent untouched confirmation.
+It does not replace the original forest or validation-selected seed-202 single.
+See the [optional CPU package](depthtrack.md#optional-seed204-cpu-model) for loading
+the selected artifact and its pinned native parity record; numerical parity is
+separate from recognition quality.
 
 ## Selection and protocol
 
@@ -96,14 +134,14 @@ or permits interference with unrelated GPU work.
 
 ## Inference integration and numerical checks
 
-The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-forest.md)
+The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/tea-forest.md)
 provides C++17 loading, CPU CLI/API, calibrated fingertip observations and
 timestamp-aware tracking for complete forests. Deep native Tea executes on
 **Mac/Linux CPU**. The historical ten-decision Metal/mobile/FPGA paths do not
 establish support for this complete forest format.
 
-The [parity harness](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/tools/validate_tea_handnet.py)
-and [selected-model evidence](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-handnet-selected-model-validation.json)
+The [parity harness](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/tools/validate_tea_handnet.py)
+and [selected-model evidence](https://github.com/twerdster/depthtrack/blob/356060770b65e5c60ef5db702482da8a30f7dbb0/docs/tea-handnet-selected-model-validation.json)
 record the actual selected ensemble and seed-202 single on **three training
 frames**, both `none`/`near-component` foreground policies, cutoff 0.25 and support
 3. Labels, probability bytes, reached heaps and ROI masks match exactly between
