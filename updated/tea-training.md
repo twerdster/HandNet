@@ -96,14 +96,14 @@ or permits interference with unrelated GPU work.
 
 ## Inference integration and numerical checks
 
-The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/docs/tea-forest.md)
+The pinned [native Tea backend guide](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-forest.md)
 provides C++17 loading, CPU CLI/API, calibrated fingertip observations and
 timestamp-aware tracking for complete forests. Deep native Tea executes on
 **Mac/Linux CPU**. The historical ten-decision Metal/mobile/FPGA paths do not
 establish support for this complete forest format.
 
-The [parity harness](https://github.com/twerdster/depthtrack/blob/6bbbe74711b4f3dc77699291c84876fff405db52/tools/validate_tea_handnet.py)
-and [selected-model evidence](https://github.com/twerdster/depthtrack/blob/tea-handnet-forest/docs/tea-handnet-selected-model-validation.json)
+The [parity harness](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/tools/validate_tea_handnet.py)
+and [selected-model evidence](https://github.com/twerdster/depthtrack/blob/1b3f86dd315d23a495b387c607ba3be4cb51662e/docs/tea-handnet-selected-model-validation.json)
 record the actual selected ensemble and seed-202 single on **three training
 frames**, both `none`/`near-component` foreground policies, cutoff 0.25 and support
 3. Labels, probability bytes, reached heaps and ROI masks match exactly between

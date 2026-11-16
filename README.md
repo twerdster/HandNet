@@ -2,7 +2,7 @@
 
 [![New!](updated/assets/new-badge.svg)](updated/README.md#updated-and-ported-for-modern-hardware) **[Updated and ported for modern hardware](updated/README.md#updated-and-ported-for-modern-hardware)**
 
-[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, complete native Tea forest CPU/API support, recorded tracking outputs and platform guides. [HandNet forest training and evaluation](updated/tea-training.md) records the completed three-tree campaign: audited mean fingertip F1@15mm on 10,000 test frames is **0.37495 for the ensemble** and **0.32799 for the best single tree**. These modest operational scores are separate from the original paper metric.
+[**DepthTrack: runnable inference and improved tracking**](updated/depthtrack.md) — a pinned code submodule, complete native Tea forest CPU/API support, recorded tracking outputs, experimental live monocular camera depth and platform guides. [HandNet forest training and evaluation](updated/tea-training.md) records the completed three-tree campaign: audited mean fingertip F1@15mm on 10,000 test frames is **0.37495 for the ensemble** and **0.32799 for the best single tree**. These modest operational scores are separate from the original paper metric.
 
 [![MATLAB](https://img.shields.io/badge/code-MATLAB-0076A8)](DisplaySession.m)
 [![Dataset on Hugging Face](https://img.shields.io/badge/dataset-Hugging%20Face-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/twerdster/HandNet)

@@ -4,6 +4,14 @@
 
 MATLAB visualization, rotation, HDF5 preprocessing and saved-result inspection for HandNet depth-camera data from the BMVC 2015 work.
 
+## Current integration — 2026-11-16
+
+The exact DepthTrack pin is `1b3f86dd315d23a495b387c607ba3be4cb51662e`,
+combining native Tea forest results/inference with the upstream live monocular
+camera experiment. Original three-tree training and both final test audits are
+complete; the dated historical stage records below are preserved for provenance.
+See the current combined-pin section for checkout/validation scope.
+
 ## Implementation evidence
 
 DisplaySession loads Parameters.mat and Indices.mat and defaults to ValidationData/session 0. ShowResults defaults to a 15 mm 3D threshold; the source distinguishes the paper’s 2D pixel metric.
@@ -93,11 +101,11 @@ the separately monitored GPU campaign and held-out scientific evaluation.
 
 ## HandNet parity harness pin — 2026-11-15 (historical stage)
 
-The current `external/depthtrack` gitlink is reviewed public commit
+At this historical stage, the `external/depthtrack` gitlink was reviewed public commit
 `6bbbe74711b4f3dc77699291c84876fff405db52` on `tea-handnet-forest`, advanced from
 `de06719`. Native inference behavior is unchanged; upstream adds
 `tools/validate_tea_handnet.py`, evidence/documentation and sanitized machine paths.
-Pinned guide/tool links now use this commit. The completed current CI run
+Guide/tool links used that commit. The completed stage CI run
 [43719231425](https://github.com/twerdster/depthtrack/actions/runs/43719231425)
 reports Success for Mac/Linux/Android checks; Pages was skipped, so no new website
 deployment is claimed. Earlier CI links remain historical evidence.
@@ -150,7 +158,47 @@ The guides link the [Tea final report](https://github.com/twerdster/tea/blob/mai
 [safe aggregate](https://github.com/twerdster/tea/blob/main/docs/evidence/handnet-forest-2026-11-16.json)
 and selected-model release tag `handnet-forest-2026-11-16`. Dataset CC BY 4.0 attribution
 and original historical MATLAB terms remain separate; no blanket model license
-is declared. Source/docs links and the true submodule gitlink must be synchronized
-to the reviewed DepthTrack documentation commit before publication. No website
+is declared. Source/docs links and the true submodule gitlink are synchronized to the
+reviewed combined DepthTrack commit recorded below. No website
 navigation, MATLAB/MAT/calibration/indices bytes, original worktree or training
 process is changed by this integration.
+
+## Live monocular DepthTrack adapter —2026-11-15 (historical stage)
+
+At this stage the DepthTrack gitlink advanced to de334f7e2a89bcb607c8142cb00756136b46b91b; the combined current pin is recorded below. Its separate public `/depthtrack/live/` page adds local browser camera/photo input, low-resolution Depth Anything V2 Small, approximate two-anchor inverse-depth calibration, range/centre masks, exact compact-tree inference and candidate component tracking.75 browser tests pass locally, plus actual Mac neural inference and synthetic-source browser camera lifecycle checks. Physical phone execution, calibrated anatomical accuracy and a useful live Mac hand scene remain unverified; the FaceTime probe was nearly black. The recorded replay, historical MATLAB/calibration/indices, dataset/code terms and original website navigation remain preserved. No training or FPGA changes occurred. Root README and updated/depthtrack.md link the new route and explicit scope; detailed commands/evidence stay in the submodule.
+
+DepthTrack sourcecommit de334f7 passed clean-checkout Mac/Linux, AndroidJNI, iOS static cross-builds and Pages in https://github.com/twerdster/depthtrack/actions/runs/43735739340 . The deployed `/depthtrack/live/` returned HTTP200 and hosted code/model assets match the pinned source bytes. Submodule-local75 browser tests pass; original MATLAB/`.mat` files have no changes.
+
+## Current combined DepthTrack pin — 2026-11-16
+
+`external/depthtrack` is a true mode 160000 submodule at published `main` commit
+`1b3f86dd315d23a495b387c607ba3be4cb51662e`, merged through
+[DepthTrack PR1](https://github.com/twerdster/depthtrack/pull/1). This combines the
+reviewed native Tea forest/docs work with upstream live monocular commit
+`de334f7`, preserving camera/model/runtime assets and the recorded replay.
+The selected 8-class, 20-decision HandNet forest remains a Mac/Linux CPU path;
+the browser live experiment retains its recovered 7-class, 10-split model,
+approximate monocular calibration and unverified anatomical/physical-phone scope.
+No full native forest inference or HandNet-trained neural network is implied in
+the browser experiment.
+
+Backend/API/harness, selected trained-model evidence and live-camera guide links
+use this exact pin. `.gitmodules` now names `main` for deliberate future updates;
+ordinary `git submodule update --init --recursive` uses the exact recorded gitlink.
+The combined change passed hosted Mac/Linux/Android checks in
+[run 43786443312](https://github.com/twerdster/depthtrack/actions/runs/43786443312)
+and [43786447391](https://github.com/twerdster/depthtrack/actions/runs/43786447391)
+before merge. The current default-branch
+[CI/Pages run 43786623292](https://github.com/twerdster/depthtrack/actions/runs/43786623292)
+at exact pin `1b3f86d` also completed successfully. Both hosted HTML routes and
+17 deployed assets were verified byte-identical to the reviewed source. This is
+deployment/integration evidence, not measured physical-phone or anatomical accuracy.
+Prior local native 6 CTests, 75 browser checks and selected real-model parity
+retain their recorded scope; no new native runtime/phone/accuracy claim follows
+from this parent documentation and pin update.
+
+Final parent checks verify public `main` reachability, exact recursive checkout,
+relative links and all 10 historical MATLAB/MAT files against the original
+checkout. The original checkout and historical source/calibration/index bytes
+remain unchanged. No training, source archive, website navigation or unrelated
+workload is modified by the HandNet integration.

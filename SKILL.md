@@ -49,7 +49,8 @@ Before every commit, review/update this SKILL and SUMMARY for behavior, workflow
 ## Native Tea forests and staged training
 
 Keep `external/depthtrack` pinned to a reviewed, remotely reachable commit; its
-current source branch is `tea-handnet-forest`. The gitlink must remain mode 160000.
+current published source branch is `main`, with exact reviewed pin
+`1b3f86dd315d23a495b387c607ba3be4cb51662e`. The gitlink must remain mode 160000.
 `updated/tea-training.md` connects the inference API to Tea's separate repaired
 `handnet-forest-training` source. Record exact reviewed commits and verify ordinary
 recursive checkout after pin changes. Preserve the original HandNet worktree.
@@ -123,3 +124,21 @@ only pause after all watched work finishes and results are reported, or user
 cancellation. A pending optional experiment-scope question must not indefinitely
 block reporting the already authorized original campaign. No additional training
 follows from documentation maintenance.
+
+For the separate live monocular route, preserve the distinction between relative estimated depth and sensor mm, two-anchor approximate calibration, manual range/ROI masks and hand segmentation, and candidate component tracks versus verified fingertips. It runs neural inference and the compact tree locally in a browser; it is neither a HandNet-trained network nor FPGA execution.75 local browser tests and synthetic-camera lifecycle evidence do not establish physical phone runtime or anatomical accuracy. Link pinned DepthTrack docs when updating the overview; keep the existing recorded replay and original MATLAB sources separate.
+
+When advancing the live adapter pin, use the source-commit CI evidence (initial live version:de334f7/run43735739340), verify hosted modules/model bytes, and keep physical-phone and anatomical-accuracy status separate from successful deployment/cross-builds.
+
+
+## Combined upstream preservation
+
+The current exact DepthTrack pin 1b3f86dd315d23a495b387c607ba3be4cb51662e combines
+native Tea forests/selected HandNet results and the upstream live monocular
+experiment. Preserve both during future merges: do not replace browser camera/
+model/runtime files with the full forest assets, or turn compact-model browser
+evidence into a native 20-decision/HandNet recognition claim. Keep backend/API/
+harness/selected-evidence/live-guide links synchronized with the gitlink.
+`.gitmodules` tracks published `main` for deliberate future changes; ordinary
+recursive checkout remains pinned. Source documentation and pin integration
+require protected 10-file hash/relative-link/reachability checks, not unrelated
+training or destructive rebuilds. Recheck SUMMARY and this workflow before commit.
